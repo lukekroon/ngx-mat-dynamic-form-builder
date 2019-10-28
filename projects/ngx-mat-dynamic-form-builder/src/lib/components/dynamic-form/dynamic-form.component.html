@@ -1,0 +1,13 @@
+<div>
+    <form [formGroup]="form">
+
+        <div *ngFor="let question of questions">
+            <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" style="padding: 5px;">
+            <ng-content></ng-content>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit()">{{_buttonText}}</button>
+        </div>
+    </form>
+</div>

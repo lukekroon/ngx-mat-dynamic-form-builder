@@ -1,0 +1,26 @@
+{
+  "name": "ngx-mat-dynamic-form-builder",
+  "version": "0.0.1",
+  "description": "Build dynamic forms in Angular Material using Reactive forms.",
+  "author": "Luke Kroon",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/orkaconsultants/dynamic-form-builder.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "typescript",
+    "angular2-material",
+    "angular-material"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^8.2.11",
+    "@angular/core": "^8.2.11",
+    "@angular/cdk": "~8.2.3",
+    "@angular/forms": "~8.2.11",
+    "@angular/material": "^8.2.3",
+    "hammerjs": "^2.0.8",
+    "rxjs": "~6.4.0"
+  }
+}

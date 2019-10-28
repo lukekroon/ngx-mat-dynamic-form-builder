@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,6 +94,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,6 +126,42 @@
           }
         }
       }
-    }},
+    },
+    "NgxMatDynamicFormBuilder": {
+      "projectType": "library",
+      "root": "projects/ngx-mat-dynamic-form-builder",
+      "sourceRoot": "projects/ngx-mat-dynamic-form-builder/src",
+      "prefix": "NgxMat",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-mat-dynamic-form-builder/tsconfig.lib.json",
+            "project": "projects/ngx-mat-dynamic-form-builder/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-mat-dynamic-form-builder/src/test.ts",
+            "tsConfig": "projects/ngx-mat-dynamic-form-builder/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-mat-dynamic-form-builder/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-mat-dynamic-form-builder/tsconfig.lib.json",
+              "projects/ngx-mat-dynamic-form-builder/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "matDynamicFormBuilder"
 }

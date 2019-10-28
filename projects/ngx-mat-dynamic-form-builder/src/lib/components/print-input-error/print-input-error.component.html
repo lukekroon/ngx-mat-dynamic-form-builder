@@ -1,0 +1,23 @@
+<div class="text-danger" *ngIf="control && control.errors && (control.dirty || control.touched)">
+
+    <div *ngIf="control.errors.required">
+        <small>Field is required</small>
+    </div>
+
+    <div *ngIf="control.errors.max"><small>Maximum value is {{control.errors.max.max}} </small></div>
+    <div *ngIf="control.errors.min"><small>Minimum value is {{control.errors.min.min}} </small></div>
+
+    <div *ngIf="control.errors.maxlength"><small>Maximum number of characters is
+            {{control.errors.maxlength.requiredLength}} </small></div>
+    <div *ngIf="control.errors.minlength"><small>Minimum number of characters is
+            {{control.errors.minlength.requiredLength}} </small></div>
+
+    <div *ngIf="control.errors.email"><small>Invalid email address</small></div>
+
+
+    <div *ngIf="control.errors.unique"><small>{{control.errors.unique}}</small></div>
+    <div *ngIf="control.errors.lessThen"><small>{{control.errors.lessThen}}</small></div>
+    <div *ngIf="control.errors.greaterThan"><small>{{control.errors.greaterThan}}</small></div>
+    <div *ngIf="control.errors.mobile"><small>{{control.errors.mobile}}</small></div>
+    <div *ngIf="control.errors.confirmPassword"><small>{{control.errors.confirmPassword}}</small></div>
+</div>

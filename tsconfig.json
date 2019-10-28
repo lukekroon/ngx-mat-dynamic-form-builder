@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-mat-dynamic-form-builder": [
+        "dist/ngx-mat-dynamic-form-builder"
+      ],
+      "ngx-mat-dynamic-form-builder/*": [
+        "dist/ngx-mat-dynamic-form-builder/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

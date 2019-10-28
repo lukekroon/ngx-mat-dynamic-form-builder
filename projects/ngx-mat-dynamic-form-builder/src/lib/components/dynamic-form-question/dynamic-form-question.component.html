@@ -1,0 +1,39 @@
+<div [formGroup]="form">
+    <div [ngSwitch]="question.controlType">
+
+        <mat-form-field *ngSwitchCase="'textbox'" style="width: 100%;">
+            <input matInput [placeholder]="question.label" [formControlName]="question.key" [id]="question.key"
+                [type]="question.type">
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'dropdown'" style="width: 100%;">
+            <mat-select [placeholder]="question.label" [formControlName]="question.key">
+                <ng-container *ngIf="question.options$">
+                    <mat-option *ngFor="let opt of question.options$ | async" [value]="opt.key">
+                        {{opt.value}}
+                    </mat-option>
+                </ng-container>
+                <ng-container *ngIf="question.options">
+                    <mat-option *ngFor="let opt of question.options" [value]="opt.key">
+                        {{opt.value}}
+                    </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="!isValid">
+                {{question.label}} is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <div *ngSwitchCase="'chipSelector'" style="width: 100%;">
+            <app-chip-selector [allObjects]="question.options$ | async" [placeholder]="question.hint"
+                [objectDisplayString]="question.objectDisplayString" [objectFilterString]="question.objectFilterString"
+                [hint]="question.hint" [validators]="question.validators">
+            </app-chip-selector>
+            <!-- (output)="setVariants($event)" -->
+
+        </div>
+
+
+
+    </div>
+</div>
