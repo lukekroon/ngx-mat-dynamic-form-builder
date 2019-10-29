@@ -4,8 +4,15 @@
       <mat-card-title>Dynamic Form Builder</mat-card-title>
       <mat-card-subtitle>Examples</mat-card-subtitle>
     </mat-card-header>
+    <h4>New Form</h4>
     <mat-card-content style="padding: 15px;">
       <app-dynamic-form [questions]="questions" (formResult)="submitForm($event)">
+        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+      </app-dynamic-form>
+    </mat-card-content>
+    <h4>Edit Form</h4>
+    <mat-card-content style="padding: 15px;">
+      <app-dynamic-form [questions]="questionsEdit" (formResult)="submitForm($event)">
         <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
       </app-dynamic-form>
     </mat-card-content>

@@ -7,12 +7,12 @@ export class QuestionControlService {
 
   constructor() { }
 
-  toFormGroup(questions: QuestionBase<any>[] ) {
+  toFormGroup(questions: QuestionBase<any>[]) {
     let group: any = {};
 
     questions.forEach(question => {
-      group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-                                              : new FormControl(question.value || '');
+      group[question.key] = question.validators ? new FormControl(question.value || '', question.validators)
+        : new FormControl(question.value || '');
     });
     return new FormGroup(group);
   }

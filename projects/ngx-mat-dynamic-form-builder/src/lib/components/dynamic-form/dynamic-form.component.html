@@ -1,7 +1,7 @@
 <div>
-    <form [formGroup]="form">
+    <form [formGroup]="form" fxLayout="row wrap">
 
-        <div *ngFor="let question of questions">
+        <div *ngFor="let question of questions" fxFlex="100" [fxFlex.gt-sm]="question.flex">
             <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
         </div>
 

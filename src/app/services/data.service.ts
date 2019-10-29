@@ -10,20 +10,21 @@ export class DataService {
 
   options: any[] = [
     {
-      key: 'key1',
-      value: 'Option 1'
+      id: 'njr28j82je2i',
+      area: 'Gauteng',
+      size: 4566
     }, {
-      key: 'key2',
-      value: 'Option 2'
+      id: 'srgsdrfg34r4',
+      area: 'Limpopo',
+      size: 9956
     }, {
-      key: 'key3',
-      value: 'Option 3'
+      id: 'sghsdrh434',
+      area: 'Mpumalanga',
+      size: 1125
     }, {
-      key: 'key4',
-      value: 'Option 4'
-    }, {
-      key: 'key5',
-      value: 'Option 5'
+      id: '23r23rffg',
+      area: 'Freestate',
+      size: 5522
     }
   ];
 
@@ -34,5 +35,5 @@ export class DataService {
   getOptions(): any {
     return this.options;
   }
-  
+
 }

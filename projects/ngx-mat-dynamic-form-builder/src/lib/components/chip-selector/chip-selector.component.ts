@@ -14,11 +14,14 @@ import { isString } from 'lodash';
 })
 export class ChipSelectorComponent implements OnInit, OnChanges {
 
-  @Input() allObjects: any[] = [];
+  @Input() options: any[] = [];
+  // Default selected options (array of selection keys)
+  @Input() defaultOptions: any[];
+  @Input() defaultOptionsKey: string;
   @Input() placeholder: string;
-  @Input() objectDisplayString: string;
-  // If objectFilterString not specified defaults to objectDisplayString value
-  @Input() objectFilterString: string;
+  @Input() displayKey: string;
+  // If filterKey not specified defaults to displayKey value
+  @Input() filterKey: string;
   @Input() hint: string = "";
 
   @Input() validators: any;
@@ -45,13 +48,16 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.allObjects && this.allObjects) {
+    if (changes.options && this.options) {
       this.filteredObjects = this.formControl.valueChanges.pipe(
         startWith(null),
         map((obj: string | null) => {
-          return obj ? this._filter(obj) : this.allObjects.slice()
+          return obj ? this._filter(obj) : this.options.slice()
         })
-      )
+      );
+      if (this.defaultOptions && this.defaultOptionsKey) {
+        this.addDefaultSelected(this.defaultOptions);
+      }
     }
   }
 
@@ -101,14 +107,21 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
     this.formControl.setValue(this.selectedObjects);
   }
 
+  addDefaultSelected(values: any[]): void {
+    this.selectedObjects = this.options.filter(i => !values.some(t => t === i[this.defaultOptionsKey]));
+    this.output.emit(this.selectedObjects);
+    this.updateFilteredObjects();
+    this.formControl.setValue(this.selectedObjects);
+  }
+
   private _filter(value: string): string[] {
     if (isString(value) && value.length >= 1) {
       let filterValue = value.toLowerCase();
 
-      return this.allObjects.filter(obj => obj[this.objectFilterString ? this.objectFilterString : this.objectDisplayString].
+      return this.options.filter(obj => obj[this.filterKey ? this.filterKey : this.displayKey].
         toLowerCase().includes(filterValue));
     }
-    return this.allObjects;
+    return this.options;
   }
 
   // Need to implement custom validator, 

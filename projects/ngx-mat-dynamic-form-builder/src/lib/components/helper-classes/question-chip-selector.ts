@@ -1,14 +1,9 @@
-import { QuestionBase } from './question-base';
-import { Observable, of } from 'rxjs';
+import { SelectQuestion } from './question-select';
 
-export class ChipSelectorQuestion extends QuestionBase<string> {
+export class ChipSelectorQuestion<T> extends SelectQuestion<T> {
     controlType = 'chipSelector';
-    options: any[] = [];
-    options$: Observable<any[]>;
 
     constructor(options: {} = {}) {
         super(options);
-        this.options = options['options'] || [];
-        this.options$ = options['options$'] || of([]);
-    }
+      }
 }

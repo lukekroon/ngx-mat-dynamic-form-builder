@@ -7,7 +7,6 @@ import { DynamicFormQuestionComponent } from './components/dynamic-form-question
 import { PrintInputErrorComponent } from './components/print-input-error/print-input-error.component';
 import { DemoMaterialModule } from './shared/demo-material-module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -23,15 +22,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule
   ],
   exports: [
-    NgxMatDynamicFormBuilderComponent,
     AutoCompleteComponent,
     ChipSelectorComponent,
     DynamicFormComponent,

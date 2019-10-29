@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class DynamicFormQuestionComponent implements OnInit {
 
-
   // @Input() question: QuestionBase<any>;
   @Input() question: any;
   @Input() form: FormGroup;
@@ -18,8 +17,10 @@ export class DynamicFormQuestionComponent implements OnInit {
   constructor() {
   }
 
-
   ngOnInit() {
+  }
 
+  setMutlipleValues(event: any): void {
+    this.form.controls[this.question.key].setValue(event.map(val => val[this.question.selection.key]));
   }
 }

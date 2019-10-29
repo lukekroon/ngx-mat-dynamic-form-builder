@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'matDynamicFormBuilder';
 
   questions: any;
+  questionsEdit: any;
 
   constructor(private qfs: QuestionFormServiceService) { }
 
@@ -19,6 +20,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.questions = this.qfs.questions();
+    this.questionsEdit = this.qfs.questions({
+      number: 2256,
+      optionObservableKey: 'njr28j82je2i',
+      optionArrayKey: '23r23rffg',
+      optionChip: ['njr28j82je2i', '23r23rffg']
+    });
   }
 
   onNoClick(): void {

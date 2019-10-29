@@ -10,3 +10,4 @@ export { AutoCompleteQuestion } from './lib/components/helper-classes/question-a
 export { DropdownQuestion } from './lib/components/helper-classes/question-dropdown';
 export { ChipSelectorQuestion } from './lib/components/helper-classes/question-chip-selector';
 export { TextboxQuestion } from './lib/components/helper-classes/question-textbox';
+export { FormValidators } from './lib/components/helper-classes/validators';

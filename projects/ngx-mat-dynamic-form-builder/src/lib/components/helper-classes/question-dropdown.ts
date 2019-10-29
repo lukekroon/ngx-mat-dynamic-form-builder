@@ -1,14 +1,11 @@
 import { QuestionBase } from './question-base';
 import { Observable, of } from 'rxjs';
+import { SelectQuestion } from './question-select';
 
-export class DropdownQuestion extends QuestionBase<string> {
+export class DropdownQuestion<T> extends SelectQuestion<T> {
   controlType = 'dropdown';
-  options: { key: string, value: string }[] = [];
-  options$: Observable<{ key: string, value: string }[]>;
 
   constructor(options: {} = {}) {
     super(options);
-    this.options = options['options'] || [];
-    this.options$ = options['options$'] || of([]);
   }
 }
