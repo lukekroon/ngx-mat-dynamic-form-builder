@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
       number: 2256,
       optionObservableKey: 'njr28j82je2i',
       optionArrayKey: '23r23rffg',
-      optionChip: ['njr28j82je2i', '23r23rffg']
+      optionChip: ['njr28j82je2i', '23r23rffg'],
+      optionAutoC: 'sghsdrh434'
     });
   }
 

@@ -23,4 +23,8 @@ export class DynamicFormQuestionComponent implements OnInit {
   setMutlipleValues(event: any): void {
     this.form.controls[this.question.key].setValue(event.map(val => val[this.question.selection.key]));
   }
+
+  setSingleValue(event: any): void {
+    this.form.controls[this.question.key].setValue(event[this.question.selection.key]);
+  }
 }

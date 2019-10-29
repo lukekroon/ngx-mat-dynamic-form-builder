@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion } from 'ngx-mat-dynamic-form-builder';
+import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion, AutoCompleteQuestion } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -63,6 +63,20 @@ export class QuestionFormServiceService {
         hint: 'Required',
         flex: 100,
         order: 4
+      }),
+      new AutoCompleteQuestion<string>({
+        key: 'optionAutoC',
+        label: 'Auto Complete',
+        value: object ? object.optionAutoC : undefined,
+        options$: this.dataService.getOptionsObservable(),
+        selection: {
+          key: 'id',
+          value: 'area'
+        },
+        validators: [...FormValidators.get('required')],
+        hint: 'Required',
+        flex: 100,
+        order: 5
       }),
     ];
     return questions.sort((a, b) => a.order - b.order);

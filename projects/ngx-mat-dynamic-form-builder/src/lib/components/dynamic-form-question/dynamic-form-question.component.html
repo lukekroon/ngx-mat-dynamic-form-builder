@@ -29,10 +29,18 @@
 
         <div *ngSwitchCase="'chipSelector'" fxFlex>
             <app-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
-                [defaultOptionsKey]="question.selection.key" [placeholder]="question.label" [displayKey]="question.selection.value"
-                [filterKey]="question.selection.value" [hint]="question.hint" [validators]="question.validators"
-                (output)="setMutlipleValues($event)" fxFlex>
+                [defaultOptionsKey]="question.selection.key" [placeholder]="question.label"
+                [displayKey]="question.selection.value" [filterKey]="question.selection.value" [hint]="question.hint"
+                [validators]="question.validators" (output)="setMutlipleValues($event)" fxFlex>
             </app-chip-selector>
+        </div>
+
+        <div *ngSwitchCase="'autoComplete'" fxFlex>
+            <app-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
+                [defaultOptionKey]="question.selection.key" [placeholder]="question.label"
+                [displayKey]="question.selection.value" [filterKey]="question.selection.value" [hint]="question.hint"
+                [validators]="question.validators" (output)="setSingleValue($event)" fxFlex>
+            </app-auto-complete>
         </div>
 
     </ng-container>

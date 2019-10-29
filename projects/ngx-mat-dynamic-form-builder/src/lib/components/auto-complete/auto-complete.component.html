@@ -1,1 +1,10 @@
-<p>auto-complete works!</p>
+<mat-form-field fxFlex>
+    <input matInput [placeholder]="placeholder" aria-label="AutoComplete" [matAutocomplete]="auto"
+        [formControl]="stateCtrl">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setValue($event)" [displayWith]="displayFn.bind(this)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <span>{{option[displayKey]}}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-hint>{{hint}}</mat-hint>
+</mat-form-field>

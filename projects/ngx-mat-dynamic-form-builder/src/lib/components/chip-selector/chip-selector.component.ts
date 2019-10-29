@@ -108,6 +108,10 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   }
 
   addDefaultSelected(values: any[]): void {
+    if(!Array.isArray(values)){
+      console.error('Default values not an array');
+      return;
+    }
     this.selectedObjects = this.options.filter(i => !values.some(t => t === i[this.defaultOptionsKey]));
     this.output.emit(this.selectedObjects);
     this.updateFilteredObjects();

@@ -1,14 +1,9 @@
-import { QuestionBase } from './question-base';
-import { Observable, of } from 'rxjs';
+import { SelectQuestion } from './question-select';
 
-export class AutoCompleteQuestion extends QuestionBase<string> {
+export class AutoCompleteQuestion<T> extends SelectQuestion<T> {
     controlType = 'autoComplete';
-    options: any[] = [];
-    options$: Observable<any[]>;
 
     constructor(options: {} = {}) {
         super(options);
-        this.options = options['options'] || [];
-        this.options$ = options['options$'] || of([]);
     }
 }
