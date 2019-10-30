@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.css']
 })
-export class AutoCompleteComponent implements OnInit, OnChanges {
+export class AutoCompleteComponent implements OnChanges {
 
   @Input() options: any[] = [];
   // Default selected options (array of selection keys)
@@ -30,14 +30,6 @@ export class AutoCompleteComponent implements OnInit, OnChanges {
   filteredOptions: Observable<any[]>;
 
   constructor() { }
-
-  ngOnInit() {
-    this.filteredOptions = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state && this.options ? this._filterOptions(state) : this.options.slice())
-      );
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.options && this.options) {

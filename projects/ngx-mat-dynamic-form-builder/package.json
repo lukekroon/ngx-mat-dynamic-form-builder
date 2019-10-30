@@ -5,7 +5,7 @@
   "author": "Luke Kroon",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/orkaconsultants/dynamic-form-builder.git"
+    "url": "https://bitbucket.org/orkaconsultants/ngx-mat-dynamic-form-builder"
   },
   "keywords": [
     "angular",
