@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionBase } from '../helper-classes/question-base';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material';
+import { DateTimeQuestion } from '../helper-classes/question-date-time';
 
 @Component({
   selector: 'app-dynamic-form-question',
@@ -26,5 +28,15 @@ export class DynamicFormQuestionComponent implements OnInit {
 
   setSingleValue(event: any): void {
     this.form.controls[this.question.key].setValue(event[this.question.selection.key]);
+  }
+
+  dateTimeChange(event: MatDatepickerInputEvent<Date>): void {
+    if (this.question.hourControl.value) {
+      event.value.setHours(this.question.hourControl.value);
+    }
+    if (this.question.minuteControl.value) {
+      event.value.setMinutes(this.question.minuteControl.value);
+    }
+    this.form.controls[this.question.key].setValue(event.value);
   }
 }

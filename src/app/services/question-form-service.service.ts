@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion, AutoCompleteQuestion } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
+import { DateTimeQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-date-time';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,8 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required'), ...FormValidators.get('positiveInteger')],
         type: 'number',
         hint: 'Positive integer',
+        appearance: 'outline',
         flex: 50,
-        order: 1
       }),
       new DropdownQuestion<string>({
         key: 'optionObservableKey',
@@ -33,8 +35,8 @@ export class QuestionFormServiceService {
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',
+        appearance: 'outline',
         flex: 50,
-        order: 2
       }),
       new DropdownQuestion<string>({
         key: 'optionArrayKey',
@@ -48,7 +50,6 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         hint: 'Required',
         flex: 80,
-        order: 3
       }),
       new ChipSelectorQuestion<string>({
         key: 'optionChip',
@@ -62,7 +63,6 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         hint: 'Required',
         flex: 100,
-        order: 4
       }),
       new AutoCompleteQuestion<string>({
         key: 'optionAutoC',
@@ -76,9 +76,15 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         hint: 'Required',
         flex: 100,
-        order: 5
+      }),
+      new DateTimeQuestion({
+        key: 'startDate',
+        label: 'Sart Date Time',
+        value: object ? object.startDate : undefined,
+        validators: [...FormValidators.get('required')],
+        flex: 100,
       }),
     ];
-    return questions.sort((a, b) => a.order - b.order);
+    return questions;
   }
 }

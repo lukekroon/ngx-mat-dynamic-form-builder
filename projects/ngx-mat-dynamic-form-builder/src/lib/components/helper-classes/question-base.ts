@@ -9,6 +9,7 @@ export class QuestionBase<T> {
     objectFilterString: string
     validators: any
     flex: number;
+    appearance: string;
 
     // TODO: Is it necessary to extend from here?
 
@@ -22,6 +23,7 @@ export class QuestionBase<T> {
         placeholder?: string,
         objectDisplayString?: string,
         objectFilterString?: string,
+        appearance?: string,
         validators?: any,
         flex?: number
     } = {}) {
@@ -33,6 +35,7 @@ export class QuestionBase<T> {
         this.placeholder = options.placeholder || '';
         this.objectDisplayString = options.objectDisplayString || '';
         this.objectFilterString = options.objectFilterString || '';
+        this.appearance = options.appearance || 'legacy';
         this.validators = options.validators || null;
         this.flex = options.flex || 100;
     }

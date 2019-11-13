@@ -2,14 +2,18 @@
 
     <ng-container [ngSwitch]="question.controlType">
 
-        <mat-form-field *ngSwitchCase="'textbox'" fxFlex>
-            <input matInput [placeholder]="question.label" [formControlName]="question.key" [id]="question.key"
-                [type]="question.type">
+        <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'textbox'" fxFlex>
+            <mat-label>{{question.label}}</mat-label>
+            <input matInput [formControlName]="question.key" [id]="question.key" [type]="question.type">
             <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
+            <mat-error>
+                <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field *ngSwitchCase="'dropdown'" fxFlex>
-            <mat-select [placeholder]="question.label" [formControlName]="question.key">
+        <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'dropdown'" fxFlex>
+            <mat-label>{{question.label}}</mat-label>
+            <mat-select [formControlName]="question.key">
                 <ng-container *ngIf="question.options$">
                     <mat-option *ngFor="let opt of question.options$ | async" [value]="opt[question.selection.key]">
                         {{opt[question.selection.value]}}
@@ -22,8 +26,8 @@
                 </ng-container>
             </mat-select>
             <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
-            <mat-error *ngIf="!isValid">
-                {{question.label}} is <strong>required</strong>
+            <mat-error>
+                <print-input-error [control]="form.controls[question.key]"> </print-input-error>
             </mat-error>
         </mat-form-field>
 
@@ -41,6 +45,24 @@
                 [displayKey]="question.selection.value" [filterKey]="question.selection.value" [hint]="question.hint"
                 [validators]="question.validators" (output)="setSingleValue($event)" fxFlex>
             </app-auto-complete>
+        </div>
+
+        <div *ngSwitchCase="'date-time'" fxFlex>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)"
+                    placeholder="Date time select" [formControl]="question.dateControl">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error>
+                    <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="margin-left: 5px;">
+                <input type="number" matInput [formControl]="question.hourControl" placeholder="Hour">
+            </mat-form-field>
+            <mat-form-field style="margin-left: 5px;">
+                <input type="number" matInput [formControl]="question.minuteControl" placeholder="Minute">
+            </mat-form-field>
         </div>
 
     </ng-container>
