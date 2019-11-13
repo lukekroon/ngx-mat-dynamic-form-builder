@@ -21,6 +21,7 @@ export class AutoCompleteComponent implements OnChanges {
   // If filterKey not specified defaults to displayKey value
   @Input() filterKey: string;
   @Input() hint: string = "";
+  @Input() appearance: string = 'standard';
 
   @Input() validators: any;
 
@@ -55,7 +56,7 @@ export class AutoCompleteComponent implements OnChanges {
   private _filterOptions(value: string): any[] {
     if (isString(value) && value.length >= 1) {
       const filterValue = value.toLowerCase();
-      return this.options.filter(state => state[this.filterKey ? this.filterKey : this.displayKey].toLowerCase().indexOf(filterValue) === 0);
+      return this.options.filter(state => state[this.filterKey ? this.filterKey : this.displayKey].toLowerCase().includes(filterValue));
     }
     return this.options;
   }

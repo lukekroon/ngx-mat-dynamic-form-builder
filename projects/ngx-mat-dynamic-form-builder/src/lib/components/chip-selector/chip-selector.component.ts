@@ -23,6 +23,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   // If filterKey not specified defaults to displayKey value
   @Input() filterKey: string;
   @Input() hint: string = "";
+  @Input() appearance: string = 'standard';
 
   @Input() validators: any;
 

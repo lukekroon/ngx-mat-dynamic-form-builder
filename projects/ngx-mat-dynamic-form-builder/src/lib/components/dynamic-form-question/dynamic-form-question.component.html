@@ -34,33 +34,38 @@
         <div *ngSwitchCase="'chipSelector'" fxFlex>
             <app-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
                 [defaultOptionsKey]="question.selection.key" [placeholder]="question.label"
-                [displayKey]="question.selection.value" [filterKey]="question.selection.value" [hint]="question.hint"
-                [validators]="question.validators" (output)="setMutlipleValues($event)" fxFlex>
+                [displayKey]="question.selection.value" [filterKey]="question.selection.value"
+                [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
+                (output)="setMutlipleValues($event)" fxFlex>
             </app-chip-selector>
         </div>
 
         <div *ngSwitchCase="'autoComplete'" fxFlex>
             <app-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
                 [defaultOptionKey]="question.selection.key" [placeholder]="question.label"
-                [displayKey]="question.selection.value" [filterKey]="question.selection.value" [hint]="question.hint"
-                [validators]="question.validators" (output)="setSingleValue($event)" fxFlex>
+                [displayKey]="question.selection.value" [filterKey]="question.selection.value"
+                [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
+                (output)="setSingleValue($event)" fxFlex>
             </app-auto-complete>
         </div>
 
-        <div *ngSwitchCase="'date-time'" fxFlex>
-            <mat-form-field>
-                <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)"
-                    placeholder="Date time select" [formControl]="question.dateControl">
+        <div *ngSwitchCase="'date-time'" fxLayout="row wrap" fxFlex>
+            <mat-form-field fxFlex.gt-xs fxFlex [appearance]="question.appearance">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)" placeholder="Date"
+                    [formControl]="question.dateControl">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
                 <mat-error>
                     <print-input-error [control]="form.controls[question.key]"> </print-input-error>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field style="margin-left: 5px;">
+            <mat-form-field fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance" style="margin-left: 5px;">
+                <mat-label>Hour</mat-label>
                 <input type="number" matInput [formControl]="question.hourControl" placeholder="Hour">
             </mat-form-field>
-            <mat-form-field style="margin-left: 5px;">
+            <mat-form-field fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance" style="margin-left: 5px;">
+                <mat-label>Minute</mat-label>
                 <input type="number" matInput [formControl]="question.minuteControl" placeholder="Minute">
             </mat-form-field>
         </div>

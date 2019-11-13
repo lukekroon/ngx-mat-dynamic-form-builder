@@ -49,6 +49,7 @@ export class QuestionFormServiceService {
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',
+        appearance: 'outline',
         flex: 80,
       }),
       new ChipSelectorQuestion<string>({
@@ -62,6 +63,7 @@ export class QuestionFormServiceService {
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',
+        appearance: 'outline',
         flex: 100,
       }),
       new AutoCompleteQuestion<string>({
@@ -75,6 +77,7 @@ export class QuestionFormServiceService {
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',
+        appearance: 'outline',
         flex: 100,
       }),
       new DateTimeQuestion({
@@ -82,6 +85,7 @@ export class QuestionFormServiceService {
         label: 'Sart Date Time',
         value: object ? object.startDate : undefined,
         validators: [...FormValidators.get('required')],
+        appearance: 'outline',
         flex: 100,
       }),
     ];

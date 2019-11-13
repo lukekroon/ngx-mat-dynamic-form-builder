@@ -1,7 +1,9 @@
-<mat-form-field fxFlex>
+<mat-form-field [appearance]="appearance" fxFlex>
+    <mat-label>{{placeholder}}</mat-label>
     <input matInput [placeholder]="placeholder" aria-label="AutoComplete" [matAutocomplete]="auto"
         [formControl]="stateCtrl">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setValue($event)" [displayWith]="displayFn.bind(this)">
+    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="setValue($event)"
+        [displayWith]="displayFn.bind(this)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             <span>{{option[displayKey]}}</span>
         </mat-option>

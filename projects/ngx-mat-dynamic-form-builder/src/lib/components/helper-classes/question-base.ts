@@ -35,7 +35,7 @@ export class QuestionBase<T> {
         this.placeholder = options.placeholder || '';
         this.objectDisplayString = options.objectDisplayString || '';
         this.objectFilterString = options.objectFilterString || '';
-        this.appearance = options.appearance || 'legacy';
+        this.appearance = options.appearance || 'standard';
         this.validators = options.validators || null;
         this.flex = options.flex || 100;
     }
