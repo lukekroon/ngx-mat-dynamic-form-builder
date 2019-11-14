@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class DataService {
   ];
 
   getOptionsObservable(): Observable<any> {
-    return of(this.options);
+    return of(this.options).pipe(delay(3000));
   }
 
   getOptions(): any {

@@ -68,7 +68,7 @@ export class QuestionFormServiceService {
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',
-        appearance: 'outline',
+        appearance: 'standard',
         flex: 100,
       }),
       new AutoCompleteQuestion<string>({

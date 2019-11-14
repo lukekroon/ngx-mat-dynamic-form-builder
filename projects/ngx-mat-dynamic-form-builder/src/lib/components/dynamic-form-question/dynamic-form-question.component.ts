@@ -3,6 +3,7 @@ import { QuestionBase } from '../helper-classes/question-base';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { DateTimeQuestion } from '../helper-classes/question-date-time';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dynamic-form-question',
@@ -16,10 +17,18 @@ export class DynamicFormQuestionComponent implements OnInit {
   @Input() form: FormGroup;
   get isValid() { return this.form.controls[this.question.key].valid; }
 
+  loading: boolean = false;
+
   constructor() {
   }
 
   ngOnInit() {
+    if (this.question.options$) {
+      this.loading = true;
+      this.question.options$ = this.question.options$.pipe(
+        tap(_ => this.loading = false)
+      );
+    }
   }
 
   setMutlipleValues(event: any): void {

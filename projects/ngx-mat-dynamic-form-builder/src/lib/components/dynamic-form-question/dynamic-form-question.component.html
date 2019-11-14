@@ -1,4 +1,4 @@
-<div [formGroup]="form" fxFlex style="margin: 5px;">
+<div [formGroup]="form" fxFlex style="margin: 5px;" fxLayout="row" fxLayoutAlign="center center">
 
     <ng-container [ngSwitch]="question.controlType">
 
@@ -78,4 +78,7 @@
         </div>
 
     </ng-container>
+    <div *ngIf="loading" style="margin-left: 5px;">
+        <mat-spinner style="zoom:0.24"></mat-spinner>
+    </div>
 </div>

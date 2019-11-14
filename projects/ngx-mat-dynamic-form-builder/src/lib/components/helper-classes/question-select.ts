@@ -16,7 +16,7 @@ export class SelectQuestion<T> extends QuestionBase<T> {
     constructor(options: {} = {}) {
         super(options);
         this.options = options['options'] || [];
-        this.options$ = options['options$'] || of([]);
+        this.options$ = options['options$'];
         this.selection = options['selection'];
     }
 }
