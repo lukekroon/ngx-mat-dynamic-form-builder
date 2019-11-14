@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion, AutoCompleteQuestion, DateTimeQuestion, Spacer } from 'ngx-mat-dynamic-form-builder';
+import {
+  QuestionBase,
+  DropdownQuestion,
+  TextboxQuestion,
+  FormValidators,
+  ChipSelectorQuestion,
+  AutoCompleteQuestion,
+  DateTimeQuestion,
+  Spacer
+} from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -50,6 +59,10 @@ export class QuestionFormServiceService {
         selection: {
           key: 'id',
           value: 'area'
+        },
+        conditional: {
+          controlKey: 'optionObservableKey',
+          value: '1'
         },
         validators: [...FormValidators.get('required')],
         hint: 'Required',

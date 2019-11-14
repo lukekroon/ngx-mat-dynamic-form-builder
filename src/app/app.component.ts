@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
     this.questions = this.qfs.questions();
     this.questionsEdit = this.qfs.questions({
       number: 2256,
-      optionObservableKey: 'njr28j82je2i',
-      optionArrayKey: '23r23rffg',
-      optionChip: ['njr28j82je2i', '23r23rffg'],
-      optionAutoC: 'sghsdrh434',
+      optionObservableKey: '1',
+      optionArrayKey: '2',
+      optionChip: ['3', '4'],
+      optionAutoC: '1',
       startDate: new Date()
     });
   }

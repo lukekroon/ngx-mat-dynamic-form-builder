@@ -11,19 +11,19 @@ export class DataService {
 
   options: any[] = [
     {
-      id: 'njr28j82je2i',
+      id: '1',
       area: 'Gauteng',
       size: 4566
     }, {
-      id: 'srgsdrfg34r4',
+      id: '2',
       area: 'Limpopo',
       size: 9956
     }, {
-      id: 'sghsdrh434',
+      id: '3',
       area: 'Mpumalanga',
       size: 1125
     }, {
-      id: '23r23rffg',
+      id: '4',
       area: 'Freestate',
       size: 5522
     }

@@ -14,6 +14,11 @@ export class QuestionBase<T> {
     suffix: string;
     prefixIcon: string;
     suffixIcon: string;
+    conditional: {
+        controlKey: string;
+        value: any
+    }
+    show: boolean;
     // TODO: Is it necessary to extend from here?
 
     constructor(options: {
@@ -32,7 +37,11 @@ export class QuestionBase<T> {
         suffix?: string,
         prefixIcon?: string,
         suffixIcon?: string,
-        flex?: number
+        flex?: number,
+        conditional?: {
+            controlKey: string;
+            value: any
+        }
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
@@ -49,5 +58,10 @@ export class QuestionBase<T> {
         this.prefixIcon = options.prefixIcon;
         this.suffixIcon = options.suffixIcon;
         this.flex = options.flex || 100;
+        this.show = true;
+        this.conditional = options.conditional;
+        if (this.conditional) {
+            this.show = false;
+        }
     }
 }
