@@ -10,7 +10,10 @@ export class QuestionControlService {
   toFormGroup(questions: QuestionBase<any>[]) {
     let group: any = {};
 
-    questions.forEach(question => {
+    questions.some(question => {
+      if (question.controlType === 'spacer') {
+        return;
+      }
       group[question.key] = question.validators ? new FormControl(question.value || '', question.validators)
         : new FormControl(question.value || '');
     });

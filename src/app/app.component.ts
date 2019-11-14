@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
       cityId: '2',
       categoryId: ['2', '4'],
       retailId: '1',
-      startDate: new Date()
+      startDate: new Date(),
+      endDate: new Date(),
     });
   }
 

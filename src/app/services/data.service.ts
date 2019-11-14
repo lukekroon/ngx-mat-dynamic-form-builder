@@ -28,7 +28,7 @@ export class DataService {
         name: 'Freestate',
         size: 5522
       }
-    ]).pipe(delay(3000));
+    ]).pipe(delay(1000));
   }
 
   getCities(): Observable<any> {
@@ -50,7 +50,7 @@ export class DataService {
         name: 'Bloemfontein',
         regionId: '4'
       }
-    ]).pipe(delay(3000));
+    ]).pipe(delay(1000));
   }
 
   getCitiesByRegion(regionId: string): Observable<any> {
@@ -74,7 +74,7 @@ export class DataService {
         id: '4',
         name: 'Running'
       }
-    ]).pipe(delay(3000));
+    ]).pipe(delay(1000));
   }
 
   getRetailer(): Observable<any> {
@@ -86,7 +86,7 @@ export class DataService {
         id: '2',
         name: 'Safari and Outdoor'
       }
-    ]).pipe(delay(3000));
+    ]).pipe(delay(1000));
   }
 
 

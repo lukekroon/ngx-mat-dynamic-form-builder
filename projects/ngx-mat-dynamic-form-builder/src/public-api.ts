@@ -11,5 +11,6 @@ export { DropdownQuestion } from './lib/components/helper-classes/question-dropd
 export { ChipSelectorQuestion } from './lib/components/helper-classes/question-chip-selector';
 export { TextboxQuestion } from './lib/components/helper-classes/question-textbox';
 export { DateTimeQuestion } from './lib/components/helper-classes/question-date-time';
+export { DateQuestion } from './lib/components/helper-classes/question-date';
 export { Spacer } from './lib/components/helper-classes/spacer';
 export { FormValidators } from './lib/components/helper-classes/validators';

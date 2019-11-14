@@ -50,4 +50,8 @@ export class DynamicFormQuestionComponent implements OnInit {
     }
     this.form.controls[this.question.key].setValue(event.value);
   }
+
+  dateChange(event: MatDatepickerInputEvent<Date>): void {
+    this.form.controls[this.question.key].setValue(event.value);
+  }
 }

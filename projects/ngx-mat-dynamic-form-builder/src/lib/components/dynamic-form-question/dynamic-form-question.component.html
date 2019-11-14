@@ -60,9 +60,9 @@
             <mat-form-field fxFlex.gt-xs fxFlex [appearance]="question.appearance">
                 <mat-label>{{question.label}}</mat-label>
                 <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)"
-                    [placeholder]="question.placeholder" [formControl]="question.dateControl">
+                    [placeholder]="question.placeholder" [formControl]="question.dateControl" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
+                <mat-datepicker #picker1 disabled="false"></mat-datepicker>
                 <mat-error>
                     <print-input-error [control]="form.controls[question.key]"> </print-input-error>
                 </mat-error>
@@ -74,6 +74,19 @@
             <mat-form-field fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance" style="margin-left: 5px;">
                 <mat-label>Minute</mat-label>
                 <input type="number" matInput [formControl]="question.minuteControl" placeholder="Minute">
+            </mat-form-field>
+        </div>
+
+        <div *ngSwitchCase="'date'" fxLayout="row wrap" fxFlex>
+            <mat-form-field fxFlex.gt-xs fxFlex [appearance]="question.appearance">
+                <mat-label>{{question.label}}</mat-label>
+                <input matInput [matDatepicker]="picker1" (dateChange)="dateChange($event)"
+                    [placeholder]="question.placeholder" [formControl]="question.dateControl" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                <mat-error>
+                    <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                </mat-error>
             </mat-form-field>
         </div>
 

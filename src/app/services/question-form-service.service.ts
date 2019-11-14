@@ -7,7 +7,8 @@ import {
   ChipSelectorQuestion,
   AutoCompleteQuestion,
   DateTimeQuestion,
-  Spacer
+  Spacer,
+  DateQuestion
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 import { BehaviorSubject } from 'rxjs';
@@ -108,6 +109,14 @@ export class QuestionFormServiceService {
         key: 'startDate',
         label: 'Sart Date Time',
         value: object ? object.startDate : undefined,
+        validators: [...FormValidators.get('required')],
+        appearance: 'outline',
+        flex: 100,
+      }),
+      new DateQuestion({
+        key: 'endDate',
+        label: 'Expiry Date',
+        value: object ? object.endDate : undefined,
         validators: [...FormValidators.get('required')],
         appearance: 'outline',
         flex: 100,
