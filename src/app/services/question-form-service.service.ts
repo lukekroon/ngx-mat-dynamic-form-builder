@@ -111,6 +111,7 @@ export class QuestionFormServiceService {
         value: object ? object.startDate : undefined,
         validators: [...FormValidators.get('required')],
         appearance: 'outline',
+        maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
         flex: 100,
       }),
       new DateQuestion({
@@ -119,6 +120,8 @@ export class QuestionFormServiceService {
         value: object ? object.endDate : undefined,
         validators: [...FormValidators.get('required')],
         appearance: 'outline',
+        minDate: new Date(),
+        maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
         flex: 100,
       }),
     ];

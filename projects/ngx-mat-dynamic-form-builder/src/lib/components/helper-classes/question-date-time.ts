@@ -1,21 +1,18 @@
 import { QuestionBase } from './question-base';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DateQuestion } from './question-date';
 
-export class DateTimeQuestion extends QuestionBase<Date> {
+export class DateTimeQuestion extends DateQuestion {
     controlType = 'date-time';
-    type: string;
 
-    dateControl: FormControl;
     hourControl: FormControl;
     minuteControl: FormControl;
 
     constructor(options: {} = {}) {
         super(options);
-        this.dateControl = new FormControl();
         this.hourControl = new FormControl(undefined, [Validators.min(0), Validators.max(23)]);
         this.minuteControl = new FormControl(undefined, [Validators.min(0), Validators.max(59)]);
-        if (options['value']) {
-            this.dateControl.setValue(options['value']);
+        if (this.dateControl.value) {
             this.hourControl.setValue(this.dateControl.value.getHours());
             this.minuteControl.setValue(this.dateControl.value.getMinutes());
         }
