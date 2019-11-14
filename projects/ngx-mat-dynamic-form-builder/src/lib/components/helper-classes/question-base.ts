@@ -58,10 +58,7 @@ export class QuestionBase<T> {
         this.prefixIcon = options.prefixIcon;
         this.suffixIcon = options.suffixIcon;
         this.flex = options.flex || 100;
-        this.show = true;
         this.conditional = options.conditional;
-        if (this.conditional) {
-            this.show = false;
-        }
+        this.conditional ? this.show = false : this.show = true;
     }
 }

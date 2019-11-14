@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { QuestionBase } from '../helper-classes/question-base';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { SelectQuestion } from '../helper-classes/question-select';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -21,6 +23,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   _buttonText: string;
 
   changeSubscriptions: Subscription[];
+  filterSubscriptions: Subscription[];
 
   constructor(private qcs: QuestionControlService) { }
 
@@ -28,6 +31,17 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
     this.form = this.qcs.toFormGroup(this.questions);
     this._buttonText = this.buttonText || 'Save';
 
+    this.prepareConditionalControls();
+
+    this.prepareFilteredOptions();
+
+  }
+
+  onSubmit() {
+    this.formResult.emit(this.form.value);
+  }
+
+  prepareConditionalControls(): void {
     this.changeSubscriptions = [];
     // Listen for changes on other controlls
     this.questions.forEach(q => {
@@ -35,23 +49,51 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
         // Subscribe to changes
         const targetControl = this.form.controls[q.conditional.controlKey];
         this.changeSubscriptions.push(targetControl.valueChanges.subscribe(value => {
-          q.conditional.value === value ? q.show = true : q.show = false;
+          if (Array.isArray(value)) {
+            value.includes(q.conditional.value) ? q.show = true : q.show = false;
+          } else {
+            q.conditional.value === value ? q.show = true : q.show = false;
+          }
         }));
         // If values are set check them now
-        if (targetControl.value && targetControl.value === q.conditional.value) {
+        if (Array.isArray(targetControl.value)) {
+          targetControl.value.includes(q.conditional.value) ? q.show = true : q.show = false;
+        } else if (targetControl.value && targetControl.value === q.conditional.value) {
           q.show = true;
         }
       }
-    })
+    });
   }
 
-  onSubmit() {
-    this.formResult.emit(this.form.value);
+  prepareFilteredOptions(): void {
+    this.filterSubscriptions = [];
+    this.questions.forEach((q: SelectQuestion<any>) => {
+      if (q.selectionFilter) {
+        const targetControl = this.form.controls[q.selectionFilter.controlKey];
+        // If the target value changes, subscribe to load new selections
+        this.filterSubscriptions.push(targetControl.valueChanges.subscribe(value => {
+          q.selectionFilter.options$(value).subscribe(res => {
+            q.options$.next(res)
+          })
+        }));
+        // if target is set, then load them immediately
+        if (targetControl.value) {
+          q.selectionFilter.options$(targetControl.value).subscribe(res => {
+            q.options$.next(res)
+          })
+        }
+      }
+    });
   }
 
   ngOnDestroy(): void {
     if (this.changeSubscriptions) {
       this.changeSubscriptions.forEach(s => {
+        s.unsubscribe;
+      })
+    }
+    if (this.filterSubscriptions) {
+      this.filterSubscriptions.forEach(s => {
         s.unsubscribe;
       })
     }

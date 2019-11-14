@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.questions = this.qfs.questions();
     this.questionsEdit = this.qfs.questions({
-      number: 2256,
-      optionObservableKey: '1',
-      optionArrayKey: '2',
-      optionChip: ['3', '4'],
-      optionAutoC: '1',
+      price: 2256,
+      regionId: '1',
+      cityId: '2',
+      categoryId: ['2', '4'],
+      retailId: '1',
       startDate: new Date()
     });
   }

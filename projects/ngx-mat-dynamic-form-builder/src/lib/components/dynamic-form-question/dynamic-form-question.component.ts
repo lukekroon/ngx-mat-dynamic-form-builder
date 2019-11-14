@@ -23,7 +23,9 @@ export class DynamicFormQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.question.options$) {
+    if (this.question.selectionFilter) {
+      console.log('TODO: Do some loading here...');
+    } else if (this.question.options$) {
       this.loading = true;
       this.question.options$ = this.question.options$.pipe(
         tap(_ => this.loading = false)
