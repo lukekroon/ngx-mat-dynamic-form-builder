@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion, AutoCompleteQuestion } from 'ngx-mat-dynamic-form-builder';
+import { QuestionBase, DropdownQuestion, TextboxQuestion, FormValidators, ChipSelectorQuestion, AutoCompleteQuestion, DateTimeQuestion, Spacer } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
-import { DateTimeQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-date-time';
-import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +14,19 @@ export class QuestionFormServiceService {
     let questions: QuestionBase<any>[] = [
       new TextboxQuestion<number>({
         key: 'number',
-        label: 'Number',
+        label: 'Price',
+        placeholder: 'Enter some number',
         value: object ? object.number : undefined,
         validators: [...FormValidators.get('required'), ...FormValidators.get('positiveInteger')],
         type: 'number',
         hint: 'Positive integer',
-        appearance: 'outline',
+        prefixIcon: 'fingerprint',
+        suffix: '.00',
+        appearance: 'standard',
         flex: 50,
+      }),
+      new Spacer({
+        flex: 50
       }),
       new DropdownQuestion<string>({
         key: 'optionObservableKey',
@@ -55,6 +59,7 @@ export class QuestionFormServiceService {
       new ChipSelectorQuestion<string>({
         key: 'optionChip',
         label: 'Multiple Chips',
+        placeholder: 'Chuup Chip Chip',
         value: object ? object.optionChip : undefined,
         options$: this.dataService.getOptionsObservable(),
         selection: {
@@ -69,6 +74,7 @@ export class QuestionFormServiceService {
       new AutoCompleteQuestion<string>({
         key: 'optionAutoC',
         label: 'Auto Complete',
+        placeholder: 'Aaaauuuto... . . .',
         value: object ? object.optionAutoC : undefined,
         options$: this.dataService.getOptionsObservable(),
         selection: {

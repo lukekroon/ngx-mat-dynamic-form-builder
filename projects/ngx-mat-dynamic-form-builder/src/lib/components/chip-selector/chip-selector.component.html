@@ -1,5 +1,5 @@
 <mat-form-field [appearance]="appearance" fxFlex>
-    <mat-label>{{placeholder}}</mat-label>
+    <mat-label>{{label}}</mat-label>
     <mat-chip-list #chipList [formControl]="formControl">
         <mat-chip *ngFor="let obj of selectedObjects" [selectable]="selectable" [removable]="removable"
             (removed)="remove(obj)">

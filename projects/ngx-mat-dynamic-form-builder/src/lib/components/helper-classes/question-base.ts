@@ -10,7 +10,10 @@ export class QuestionBase<T> {
     validators: any
     flex: number;
     appearance: string;
-
+    prefix: string;
+    suffix: string;
+    prefixIcon: string;
+    suffixIcon: string;
     // TODO: Is it necessary to extend from here?
 
     constructor(options: {
@@ -25,6 +28,10 @@ export class QuestionBase<T> {
         objectFilterString?: string,
         appearance?: string,
         validators?: any,
+        prefix?: string,
+        suffix?: string,
+        prefixIcon?: string,
+        suffixIcon?: string,
         flex?: number
     } = {}) {
         this.value = options.value;
@@ -37,6 +44,10 @@ export class QuestionBase<T> {
         this.objectFilterString = options.objectFilterString || '';
         this.appearance = options.appearance || 'standard';
         this.validators = options.validators || null;
+        this.prefix = options.prefix;
+        this.suffix = options.suffix;
+        this.prefixIcon = options.prefixIcon;
+        this.suffixIcon = options.suffixIcon;
         this.flex = options.flex || 100;
     }
 }

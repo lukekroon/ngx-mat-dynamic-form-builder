@@ -2,10 +2,17 @@
 
     <ng-container [ngSwitch]="question.controlType">
 
+        <span *ngSwitchCase="'spacer'" fxFlex></span>
+
         <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'textbox'" fxFlex>
             <mat-label>{{question.label}}</mat-label>
-            <input matInput [formControlName]="question.key" [id]="question.key" [type]="question.type">
+            <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
+            <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
+            <input matInput [placeholder]="question.placeholder" [formControlName]="question.key" [id]="question.key"
+                [type]="question.type">
             <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
+            <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
+            <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
             <mat-error>
                 <print-input-error [control]="form.controls[question.key]"> </print-input-error>
             </mat-error>
@@ -33,8 +40,8 @@
 
         <div *ngSwitchCase="'chipSelector'" fxFlex>
             <app-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
-                [defaultOptionsKey]="question.selection.key" [placeholder]="question.label"
-                [displayKey]="question.selection.value" [filterKey]="question.selection.value"
+                [defaultOptionsKey]="question.selection.key" [placeholder]="question.placeholder"
+                [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
                 [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
                 (output)="setMutlipleValues($event)" fxFlex>
             </app-chip-selector>
@@ -42,8 +49,8 @@
 
         <div *ngSwitchCase="'autoComplete'" fxFlex>
             <app-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
-                [defaultOptionKey]="question.selection.key" [placeholder]="question.label"
-                [displayKey]="question.selection.value" [filterKey]="question.selection.value"
+                [defaultOptionKey]="question.selection.key" [placeholder]="question.placeholder"
+                [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
                 [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
                 (output)="setSingleValue($event)" fxFlex>
             </app-auto-complete>
@@ -52,8 +59,8 @@
         <div *ngSwitchCase="'date-time'" fxLayout="row wrap" fxFlex>
             <mat-form-field fxFlex.gt-xs fxFlex [appearance]="question.appearance">
                 <mat-label>Date</mat-label>
-                <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)" placeholder="Date"
-                    [formControl]="question.dateControl">
+                <input matInput [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)"
+                    placeholder="Click icon to select" [formControl]="question.dateControl">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
                 <mat-error>

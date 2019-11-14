@@ -1,5 +1,5 @@
 <mat-form-field [appearance]="appearance" fxFlex>
-    <mat-label>{{placeholder}}</mat-label>
+    <mat-label>{{label}}</mat-label>
     <input matInput [placeholder]="placeholder" aria-label="AutoComplete" [matAutocomplete]="auto"
         [formControl]="stateCtrl">
     <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="setValue($event)"

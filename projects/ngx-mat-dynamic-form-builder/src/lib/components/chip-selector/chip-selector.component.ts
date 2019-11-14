@@ -18,6 +18,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   // Default selected options (array of selection keys)
   @Input() defaultOptions: any[];
   @Input() defaultOptionsKey: string;
+  @Input() label: string;
   @Input() placeholder: string;
   @Input() displayKey: string;
   // If filterKey not specified defaults to displayKey value
