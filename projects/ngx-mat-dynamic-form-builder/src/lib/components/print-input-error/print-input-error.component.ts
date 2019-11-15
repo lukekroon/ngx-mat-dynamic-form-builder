@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'print-input-error',
+  selector: 'ngx-mat-print-input-error',
   templateUrl: './print-input-error.component.html',
   styleUrls: ['./print-input-error.component.css']
 })

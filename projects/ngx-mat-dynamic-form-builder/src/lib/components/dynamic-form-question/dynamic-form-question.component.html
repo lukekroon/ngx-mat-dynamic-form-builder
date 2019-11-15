@@ -14,7 +14,7 @@
             <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
             <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
             <mat-error>
-                <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
             </mat-error>
         </mat-form-field>
 
@@ -34,26 +34,26 @@
             </mat-select>
             <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
             <mat-error>
-                <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
             </mat-error>
         </mat-form-field>
 
         <div *ngSwitchCase="'chipSelector'" fxFlex>
-            <app-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
+            <ngx-mat-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
                 [defaultOptionsKey]="question.selection.key" [placeholder]="question.placeholder"
                 [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
                 [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
                 (output)="setMutlipleValues($event)" fxFlex>
-            </app-chip-selector>
+            </ngx-mat-chip-selector>
         </div>
 
         <div *ngSwitchCase="'autoComplete'" fxFlex>
-            <app-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
+            <ngx-mat-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
                 [defaultOptionKey]="question.selection.key" [placeholder]="question.placeholder"
                 [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
                 [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
                 (output)="setSingleValue($event)" fxFlex>
-            </app-auto-complete>
+            </ngx-mat-auto-complete>
         </div>
 
         <div *ngSwitchCase="'date-time'" fxLayout="row wrap" fxFlex>
@@ -64,7 +64,7 @@
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1 disabled="false"></mat-datepicker>
                 <mat-error>
-                    <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                    <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
                 </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance" style="margin-left: 5px;">
@@ -86,7 +86,7 @@
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1 disabled="false"></mat-datepicker>
                 <mat-error>
-                    <print-input-error [control]="form.controls[question.key]"> </print-input-error>
+                    <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
                 </mat-error>
             </mat-form-field>
         </div>

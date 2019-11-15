@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionBase } from '../helper-classes/question-base';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material';
-import { DateTimeQuestion } from '../helper-classes/question-date-time';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dynamic-form-question',
+  selector: 'ngx-mat-dynamic-form-question',
   templateUrl: './dynamic-form-question.component.html',
   styleUrls: ['./dynamic-form-question.component.css']
 })

@@ -11,7 +11,7 @@
             (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>
     <mat-error>
-        <print-input-error [control]="formControl"> </print-input-error>
+        <ngx-mat-print-input-error [control]="formControl"> </ngx-mat-print-input-error>
     </mat-error>
     <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="selected($event)">
         <mat-option *ngFor="let obj of filteredObjects | async" [value]="obj">

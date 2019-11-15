@@ -8,7 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { isString } from 'lodash';
 
 @Component({
-  selector: 'app-chip-selector',
+  selector: 'ngx-mat-chip-selector',
   templateUrl: './chip-selector.component.html',
   styleUrls: ['./chip-selector.component.css']
 })
@@ -45,7 +45,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   selectedObjects: any[] = [];
 
   ngOnInit() {
-    this.formControl.setValidators([this.validateRequired]);
+    // this.formControl.setValidators([this.validateRequired]);
     this.formControl.setValue(this.selectedObjects);
   }
 

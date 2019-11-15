@@ -1,15 +1,20 @@
 # MatDynamicFormBuilder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.14.
+Documentation still to follow. To see how this library works, please run the demo and inspect the code.
 
-## Run the library
+## How to run the demo application
 
-`ng build NgxMatDynamicFormBuilder --watch`
+1. Build the library with `ng build NgxMatDynamicFormBuilder`
+2. A new `dist` folder will appear with the library.
+3. Run `ng serve` to start the demo.
 
-## Run the Demo
+## How to contribute
 
-`ng serve`
+1. In one terminal build the library with `ng build NgxMatDynamicFormBuilder --watch`. This command will check for any file changes in the library directory.
+2. In another terminal run `ng serve` to test your changes to the library.
 
-## Install Locally
+## Install Locally to your own project
 
-`npm install /path/to/dist`
+1. Build the library with `ng build NgxMatDynamicFormBuilder`.
+2. From your own project, run `npm install /path/to/library/dist`.
+

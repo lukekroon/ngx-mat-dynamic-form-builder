@@ -2,12 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { QuestionBase } from '../helper-classes/question-base';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SelectQuestion } from '../helper-classes/question-select';
-import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dynamic-form',
+  selector: 'ngx-mat-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css'],
   providers: [QuestionControlService]

@@ -6,7 +6,7 @@ import { isString } from 'lodash';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
-  selector: 'app-auto-complete',
+  selector: 'ngx-mat-auto-complete',
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.css']
 })

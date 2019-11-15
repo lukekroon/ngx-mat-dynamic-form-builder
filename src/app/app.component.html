@@ -6,15 +6,15 @@
     </mat-card-header>
     <h4>New Form</h4>
     <mat-card-content style="padding: 15px;">
-      <app-dynamic-form [questions]="questions" (formResult)="submitForm($event)">
+      <ngx-mat-dynamic-form [questions]="questions" (formResult)="submitForm($event)">
         <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
-      </app-dynamic-form>
+      </ngx-mat-dynamic-form>
     </mat-card-content>
     <h4>Edit Form</h4>
     <mat-card-content style="padding: 15px;">
-      <app-dynamic-form [questions]="questionsEdit" (formResult)="submitForm($event)">
+      <ngx-mat-dynamic-form [questions]="questionsEdit" (formResult)="submitForm($event)">
         <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
-      </app-dynamic-form>
+      </ngx-mat-dynamic-form>
     </mat-card-content>
   </mat-card>
 </div>
