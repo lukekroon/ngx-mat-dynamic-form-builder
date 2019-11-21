@@ -4,11 +4,6 @@
             <ngx-mat-dynamic-form-question *ngIf="question.show" [question]="question" [form]="form">
             </ngx-mat-dynamic-form-question>
         </div>
-    </div>
-
-    <div fxLayout="row" fxLayoutGap="10px" style="padding: 5px;">
         <ng-content></ng-content>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid"
-            (click)="onSubmit()">{{_buttonText}}</button>
     </div>
 </form>

@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 import { Subscription } from 'rxjs';
 import { SelectQuestion } from '../helper-classes/question-select';
+import { TextboxQuestion } from '../helper-classes/question-textbox';
 
 @Component({
   selector: 'ngx-mat-dynamic-form',
@@ -34,10 +35,20 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
 
     this.prepareFilteredOptions();
 
-  }
+    this.form.statusChanges.subscribe(status => {
+      if (status === 'VALID') {
+        let validForm = this.form.getRawValue();
+        this.questions.forEach((q: TextboxQuestion<any>) => {
+          if (q.type && q.type === 'number') {
+            validForm[q.key] = Number(validForm[q.key]);
+          }
+        })
+        this.formResult.emit(validForm)
+      } else {
+        this.formResult.emit(null)
+      };
+    })
 
-  onSubmit() {
-    this.formResult.emit(this.form.value);
   }
 
   prepareConditionalControls(): void {

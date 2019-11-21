@@ -23,6 +23,7 @@ export class AutoCompleteComponent implements OnChanges {
   @Input() filterKey: string;
   @Input() hint: string = "";
   @Input() appearance: string = 'standard';
+  @Input() disabled: boolean = false;
 
   @Input() validators: any;
 

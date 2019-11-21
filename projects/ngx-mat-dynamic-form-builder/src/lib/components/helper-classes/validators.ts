@@ -28,6 +28,13 @@ export class FormValidators {
             ]
         },
         {
+            name: 'positiveNumber',
+            validators: [
+                Validators.min(0),
+                Validators.pattern(/^[0-9]*$/)
+            ]
+        },
+        {
             name: 'string',
             validators: [
                 Validators.pattern(/^[A-Za-z]+$/)

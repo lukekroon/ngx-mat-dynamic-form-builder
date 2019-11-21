@@ -19,6 +19,8 @@ export class QuestionBase<T> {
         value: any
     }
     show: boolean;
+    disabled: boolean;
+    readonly: boolean;
     // TODO: Is it necessary to extend from here?
 
     constructor(options: {
@@ -38,6 +40,8 @@ export class QuestionBase<T> {
         prefixIcon?: string,
         suffixIcon?: string,
         flex?: number,
+        disabled?: boolean,
+        readonly?: boolean,
         conditional?: {
             controlKey: string;
             value: any
@@ -58,6 +62,8 @@ export class QuestionBase<T> {
         this.prefixIcon = options.prefixIcon;
         this.suffixIcon = options.suffixIcon;
         this.flex = options.flex || 100;
+        this.disabled = options.disabled || false;
+        this.readonly = options.readonly || false;
         this.conditional = options.conditional;
         this.conditional ? this.show = false : this.show = true;
     }

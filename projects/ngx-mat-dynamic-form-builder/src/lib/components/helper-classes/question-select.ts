@@ -17,12 +17,14 @@ export class SelectQuestion<T> extends QuestionBase<T> {
         filterKey: string;
         options$: (value: any) => Observable<any[]>;
     };
+    defaultValue: boolean;
 
     constructor(options: {} = {}) {
         super(options);
         this.options = options['options'] || [];
         this.options$ = options['options$'];
         this.selection = options['selection'];
+        this.defaultValue = options['defaultValue'] != undefined ? options['defaultValue'] : false;
         this.selectionFilter = options['selectionFilter'];
     }
 }

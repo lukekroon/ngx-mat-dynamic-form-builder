@@ -24,6 +24,22 @@ export class QuestionFormServiceService {
   questions(object?: any): QuestionBase<any>[] {
     let questions: QuestionBase<any>[] = [
       new TextboxQuestion<number>({
+        key: 'qty',
+        label: 'Quantity',
+        placeholder: 'Number of',
+        value: object ? object.qty : undefined,
+        validators: [...FormValidators.get('positiveInteger')],
+        type: 'number',
+        hint: 'Disabled',
+        prefixIcon: 'close',
+        appearance: 'standard',
+        disabled: true,
+        flex: 50,
+      }),
+      new Spacer({
+        flex: 50
+      }),
+      new TextboxQuestion<number>({
         key: 'price',
         label: 'Price',
         placeholder: 'Enter price of item',
@@ -34,12 +50,13 @@ export class QuestionFormServiceService {
         prefixIcon: 'attach_money',
         suffix: '- 00',
         appearance: 'standard',
+        disabled: false,
         flex: 50,
       }),
       new Spacer({
         flex: 50
       }),
-      new DropdownQuestion<string>({
+      new DropdownQuestion<number>({
         key: 'regionId',
         label: 'Region',
         value: object ? object.regionId : undefined,
@@ -51,9 +68,10 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         hint: 'Required',
         appearance: 'outline',
+        disabled: false,
         flex: 50,
       }),
-      new DropdownQuestion<string>({
+      new DropdownQuestion<number>({
         key: 'cityId',
         label: 'City',
         value: object ? object.cityId : undefined,
@@ -65,14 +83,15 @@ export class QuestionFormServiceService {
         selectionFilter: {
           controlKey: 'regionId',
           filterKey: 'regionId',
-          options$: (regionId: string) => this.dataService.getCitiesByRegion(regionId),
+          options$: (regionId: number) => this.dataService.getCitiesByRegion(regionId),
         },
+        defaultValue: true,
         validators: [...FormValidators.get('required')],
         hint: 'Home City',
         appearance: 'outline',
         flex: 80,
       }),
-      new ChipSelectorQuestion<string>({
+      new ChipSelectorQuestion<number>({
         key: 'categoryId',
         label: 'Categories',
         placeholder: 'One or Multiple',
@@ -85,9 +104,10 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         hint: 'Required',
         appearance: 'standard',
+        disabled: false,
         flex: 100,
       }),
-      new AutoCompleteQuestion<string>({
+      new AutoCompleteQuestion<number>({
         key: 'retailId',
         label: 'Retailer',
         placeholder: 'Hiking Retailers',
@@ -99,10 +119,11 @@ export class QuestionFormServiceService {
         },
         conditional: {
           controlKey: 'categoryId',
-          value: '2'
+          value: 2
         },
         hint: 'Required',
         appearance: 'outline',
+        disabled: false,
         flex: 100,
       }),
       new DateTimeQuestion({
@@ -112,6 +133,7 @@ export class QuestionFormServiceService {
         validators: [...FormValidators.get('required')],
         appearance: 'outline',
         maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
+        disabled: false,
         flex: 100,
       }),
       new DateQuestion({
@@ -122,6 +144,7 @@ export class QuestionFormServiceService {
         appearance: 'outline',
         minDate: new Date(),
         maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
+        disabled: false,
         flex: 100,
       }),
     ];

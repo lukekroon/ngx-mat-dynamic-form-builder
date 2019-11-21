@@ -6,15 +6,33 @@
     </mat-card-header>
     <h4>New Form</h4>
     <mat-card-content style="padding: 15px;">
-      <ngx-mat-dynamic-form [questions]="questions" (formResult)="submitForm($event)">
-        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+      <ngx-mat-dynamic-form [questions]="questions" (formResult)="saveFormNew($event)">
+        <mat-card fxFlex>
+          <mat-card-header>
+            <mat-card-title>Append to form</mat-card-title>
+            <mat-card-subtitle>Own Content</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content style="padding: 15px;">
+            My Own Content
+          </mat-card-content>
+        </mat-card>
       </ngx-mat-dynamic-form>
+      <button mat-flat-button (click)="submitNew()" color="accent" style="margin-top: 15px;">Save</button>
     </mat-card-content>
     <h4>Edit Form</h4>
     <mat-card-content style="padding: 15px;">
-      <ngx-mat-dynamic-form [questions]="questionsEdit" (formResult)="submitForm($event)">
-        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+      <ngx-mat-dynamic-form [questions]="questionsEdit" (formResult)="saveFormEdit($event)">
+        <mat-card fxFlex>
+          <mat-card-header>
+            <mat-card-title>Append to form</mat-card-title>
+            <mat-card-subtitle>Own Content</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content style="padding: 15px;">
+            My Own Content
+          </mat-card-content>
+        </mat-card>
       </ngx-mat-dynamic-form>
+      <button mat-flat-button (click)="submitEdit()" color="accent" style="margin-top: 15px;">Save</button>
     </mat-card-content>
   </mat-card>
 </div>

@@ -12,19 +12,19 @@ export class DataService {
   getRegions(): Observable<any> {
     return of([
       {
-        id: '1',
+        id: 1,
         name: 'Gauteng',
         size: 4566
       }, {
-        id: '2',
+        id: 2,
         name: 'Limpopo',
         size: 9956
       }, {
-        id: '3',
+        id: 3,
         name: 'Mpumalanga',
         size: 1125
       }, {
-        id: '4',
+        id: 4,
         name: 'Freestate',
         size: 5522
       }
@@ -34,26 +34,26 @@ export class DataService {
   getCities(): Observable<any> {
     return of([
       {
-        id: '1',
+        id: 1,
         name: 'Johannesburg',
-        regionId: '1'
+        regionId: 1
       }, {
-        id: '2',
+        id: 2,
         name: 'Pretoria',
-        regionId: '1'
+        regionId: 1
       }, {
-        id: '3',
+        id: 3,
         name: 'Nelspruit',
-        regionId: '3'
+        regionId: 3
       }, {
-        id: '4',
+        id: 4,
         name: 'Bloemfontein',
-        regionId: '4'
+        regionId: 4
       }
     ]).pipe(delay(1000));
   }
 
-  getCitiesByRegion(regionId: string): Observable<any> {
+  getCitiesByRegion(regionId: number): Observable<any> {
     return this.getCities().pipe(
       map(c => c.filter(v => v.regionId === regionId))
     )
@@ -62,16 +62,16 @@ export class DataService {
   getCategories(): Observable<any> {
     return of([
       {
-        id: '1',
+        id: 1,
         name: 'Leisure'
       }, {
-        id: '2',
+        id: 2,
         name: 'Camping'
       }, {
-        id: '3',
+        id: 3,
         name: 'Watersports'
       }, {
-        id: '4',
+        id: 4,
         name: 'Running'
       }
     ]).pipe(delay(1000));
@@ -80,10 +80,10 @@ export class DataService {
   getRetailer(): Observable<any> {
     return of([
       {
-        id: '1',
+        id: 1,
         name: 'Cape Union Mart'
       }, {
-        id: '2',
+        id: 2,
         name: 'Safari and Outdoor'
       }
     ]).pipe(delay(1000));

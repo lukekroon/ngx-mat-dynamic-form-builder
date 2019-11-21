@@ -25,6 +25,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   @Input() filterKey: string;
   @Input() hint: string = "";
   @Input() appearance: string = 'standard';
+  @Input() disabled: boolean = false;
 
   @Input() validators: any;
 
@@ -37,7 +38,6 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
 
   visible = true;
   selectable = true;
-  removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -45,7 +45,6 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   selectedObjects: any[] = [];
 
   ngOnInit() {
-    // this.formControl.setValidators([this.validateRequired]);
     this.formControl.setValue(this.selectedObjects);
   }
 

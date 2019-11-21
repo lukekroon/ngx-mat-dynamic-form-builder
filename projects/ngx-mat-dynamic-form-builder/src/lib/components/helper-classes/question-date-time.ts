@@ -10,8 +10,8 @@ export class DateTimeQuestion extends DateQuestion {
 
     constructor(options: {} = {}) {
         super(options);
-        this.hourControl = new FormControl(undefined, [Validators.min(0), Validators.max(23)]);
-        this.minuteControl = new FormControl(undefined, [Validators.min(0), Validators.max(59)]);
+        this.hourControl = new FormControl({ value: undefined, disabled: options['disabled'] != undefined ? options['disabled'] : false }, [Validators.min(0), Validators.max(23)]);
+        this.minuteControl = new FormControl({ value: undefined, disabled: options['disabled'] != undefined ? options['disabled'] : false }, [Validators.min(0), Validators.max(59)]);
         if (this.dateControl.value) {
             this.hourControl.setValue(this.dateControl.value.getHours());
             this.minuteControl.setValue(this.dateControl.value.getMinutes());

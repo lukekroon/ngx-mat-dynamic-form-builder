@@ -22,6 +22,7 @@
             <mat-label>{{question.label}}</mat-label>
             <mat-select [formControlName]="question.key">
                 <ng-container *ngIf="question.options$">
+                    <mat-option *ngIf="question.defaultValue">None</mat-option>
                     <mat-option *ngFor="let opt of question.options$ | async" [value]="opt[question.selection.key]">
                         {{opt[question.selection.value]}}
                     </mat-option>
@@ -41,28 +42,29 @@
         <div *ngSwitchCase="'chipSelector'" fxFlex>
             <ngx-mat-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
                 [defaultOptionsKey]="question.selection.key" [placeholder]="question.placeholder"
-                [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
-                [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
-                (output)="setMutlipleValues($event)" fxFlex>
+                [disabled]="question.disabled" [label]="question.label" [displayKey]="question.selection.value"
+                [filterKey]="question.selection.value" [appearance]="question.appearance" [hint]="question.hint"
+                [validators]="question.validators" (output)="setMutlipleValues($event)" fxFlex>
             </ngx-mat-chip-selector>
         </div>
 
         <div *ngSwitchCase="'autoComplete'" fxFlex>
             <ngx-mat-auto-complete [options]="question.options$ | async" [defaultOption]="question.value"
                 [defaultOptionKey]="question.selection.key" [placeholder]="question.placeholder"
-                [label]="question.label" [displayKey]="question.selection.value" [filterKey]="question.selection.value"
-                [appearance]="question.appearance" [hint]="question.hint" [validators]="question.validators"
-                (output)="setSingleValue($event)" fxFlex>
+                [disabled]="question.disabled" [label]="question.label" [displayKey]="question.selection.value"
+                [filterKey]="question.selection.value" [appearance]="question.appearance" [hint]="question.hint"
+                [validators]="question.validators" (output)="setSingleValue($event)" fxFlex>
             </ngx-mat-auto-complete>
         </div>
 
         <div *ngSwitchCase="'date-time'" fxLayout="row wrap" fxFlex>
             <mat-form-field fxFlex.gt-xs fxFlex [appearance]="question.appearance">
                 <mat-label>{{question.label}}</mat-label>
-                <input matInput [min]="question.minDate" [max]="question.maxDate" [matDatepicker]="picker1" (dateChange)="dateTimeChange($event)"
-                    [placeholder]="question.placeholder" [formControl]="question.dateControl" readonly>
+                <input matInput [min]="question.minDate" [max]="question.maxDate" [matDatepicker]="picker1"
+                    (dateChange)="dateTimeChange($event)" [placeholder]="question.placeholder"
+                    [formControl]="question.dateControl" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                <mat-datepicker #picker1 [disabled]="question.disabled"></mat-datepicker>
                 <mat-error>
                     <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
                 </mat-error>
@@ -84,7 +86,7 @@
                     (dateChange)="dateChange($event)" [placeholder]="question.placeholder"
                     [formControl]="question.dateControl" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                <mat-datepicker #picker1 [disabled]="question.disabled"></mat-datepicker>
                 <mat-error>
                     <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
                 </mat-error>
