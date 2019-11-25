@@ -14,8 +14,8 @@ export class QuestionControlService {
       if (question.controlType === 'spacer') {
         return;
       }
-      group[question.key] = question.validators ? new FormControl({ value: question.value || '', disabled: question.disabled }, question.validators)
-        : new FormControl(question.value || '');
+      group[question.key] = question.validators ? new FormControl({ value: question.value || undefined, disabled: question.disabled }, question.validators)
+        : new FormControl({ value: question.value || undefined, disabled: question.disabled });
     });
     return new FormGroup(group);
   }

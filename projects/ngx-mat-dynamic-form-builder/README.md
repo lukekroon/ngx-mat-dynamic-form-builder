@@ -9,3 +9,7 @@ Run `ng build NgxMatDynamicFormBuilder` to build the project. The build artifact
 ## Origin
 
 This library is based of this [Angular guide](https://angular.io/guide/dynamic-form) with Angular Material and Flex Layout.
+
+## Usage
+
+Clone the repository and run the demo application.

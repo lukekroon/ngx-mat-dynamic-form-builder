@@ -40,7 +40,8 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
         let validForm = this.form.getRawValue();
         this.questions.forEach((q: TextboxQuestion<any>) => {
           if (q.type && q.type === 'number') {
-            validForm[q.key] = Number(validForm[q.key]);
+            if (validForm[q.key])
+              validForm[q.key] = Number(validForm[q.key]);
           }
         })
         this.formResult.emit(validForm)

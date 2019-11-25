@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   saveFormEdit(form: any): void {
+    console.log('EDIT FORM:', form);
     this.editForm = form;
   }
 
