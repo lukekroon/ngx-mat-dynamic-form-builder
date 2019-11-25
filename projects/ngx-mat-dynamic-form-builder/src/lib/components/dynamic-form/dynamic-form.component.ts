@@ -29,6 +29,10 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
+    // TODO: Sometimes if the form is valid from the beginning it does not emit in subscribe.
+    if (this.form.valid) {
+      this.emitForm();
+    }
     this._buttonText = this.buttonText || 'Save';
 
     this.prepareConditionalControls();
@@ -37,19 +41,23 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
 
     this.form.statusChanges.subscribe(status => {
       if (status === 'VALID') {
-        let validForm = this.form.getRawValue();
-        this.questions.forEach((q: TextboxQuestion<any>) => {
-          if (q.type && q.type === 'number') {
-            if (validForm[q.key])
-              validForm[q.key] = Number(validForm[q.key]);
-          }
-        })
-        this.formResult.emit(validForm)
+        this.emitForm();
       } else {
         this.formResult.emit(null)
       };
     })
 
+  }
+
+  private emitForm(): void {
+    let validForm = this.form.getRawValue();
+    this.questions.forEach((q: TextboxQuestion<any>) => {
+      if (q.type && q.type === 'number') {
+        if (validForm[q.key])
+          validForm[q.key] = Number(validForm[q.key]);
+      }
+    })
+    this.formResult.emit(validForm)
   }
 
   prepareConditionalControls(): void {

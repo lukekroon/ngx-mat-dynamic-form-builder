@@ -11,9 +11,11 @@ export class AppComponent implements OnInit {
 
   questions: any;
   questionsEdit: any;
+  datePicker: any;
 
   newForm: any;
   editForm: any;
+  datePickerForm: any;
 
   constructor(private qfs: QuestionFormServiceService) { }
 
@@ -26,6 +28,11 @@ export class AppComponent implements OnInit {
     this.editForm = form;
   }
 
+  saveDatePicker(form: any): void {
+    console.log('DATE PICKER:', form);
+    this.datePickerForm = form;
+  }
+
   submitEdit(): void {
     console.log(this.editForm);
   }
@@ -34,8 +41,13 @@ export class AppComponent implements OnInit {
     console.log(this.newForm);
   }
 
+  submitDatePicker(): void {
+    console.log(this.datePickerForm);
+  }
+
   ngOnInit(): void {
     this.questions = this.qfs.questions();
+    this.datePicker = this.qfs.datePicker();
     this.questionsEdit = this.qfs.questions({
       qty: 5,
       price: 2256,

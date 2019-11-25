@@ -150,4 +150,23 @@ export class QuestionFormServiceService {
     ];
     return questions;
   }
+
+  datePicker(): QuestionBase<any>[] {
+    return [
+      new DateQuestion({
+        key: 'start',
+        label: 'Start Date',
+        value: new Date(),
+        validators: [...FormValidators.get('required')],
+        flex: 33,
+      }),
+      new DateQuestion({
+        key: 'end',
+        label: 'End Date',
+        value: new Date(),
+        validators: [...FormValidators.get('required')],
+        flex: 33,
+      }),
+    ]
+  }
 }

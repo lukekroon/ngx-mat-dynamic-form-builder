@@ -34,5 +34,11 @@
       </ngx-mat-dynamic-form>
       <button mat-flat-button (click)="submitEdit()" color="accent" style="margin-top: 15px;">Save</button>
     </mat-card-content>
+    <h4>Date Picker</h4>
+    <mat-card-content style="padding: 15px;">
+      <ngx-mat-dynamic-form [questions]="datePicker" (formResult)="saveDatePicker($event)">
+      </ngx-mat-dynamic-form>
+      <button mat-flat-button (click)="submitDatePicker()" color="accent" style="margin-top: 15px;">Save</button>
+    </mat-card-content>
   </mat-card>
 </div>
