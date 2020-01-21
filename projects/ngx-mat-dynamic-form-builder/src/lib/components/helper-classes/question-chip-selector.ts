@@ -1,9 +1,12 @@
 import { SelectQuestion } from './question-select';
 
 export class ChipSelectorQuestion<T> extends SelectQuestion<T> {
-    controlType = 'chipSelector';
+  controlType = 'chipSelector';
 
-    constructor(options: {} = {}) {
-        super(options);
-      }
+  customChip: boolean;
+
+  constructor(options: {} = {}) {
+    super(options);
+    this.customChip = options['customChip'];
+  }
 }
