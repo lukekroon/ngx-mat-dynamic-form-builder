@@ -12,6 +12,7 @@ import {
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 import { BehaviorSubject } from 'rxjs';
+import { TextAreaQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-text-area';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,21 @@ export class QuestionFormServiceService {
 
   questions(object?: any): QuestionBase<any>[] {
     let questions: QuestionBase<any>[] = [
+      new TextAreaQuestion<string>({
+        key: 'about',
+        label: 'About Yourself',
+        placeholder: 'Tell us something interesting...',
+        value: object ? object.about : undefined,
+        validators: [...FormValidators.get('required')],
+        type: 'text',
+        hint: 'Long Text',
+        appearance: 'outline',
+        disabled: false,
+        flex: 100,
+        minRows: 4,
+        maxRows: 8,
+        autoSize: true
+      }),
       new TextboxQuestion<number>({
         key: 'qty',
         label: 'Quantity',
@@ -125,6 +141,7 @@ export class QuestionFormServiceService {
         appearance: 'outline',
         disabled: false,
         flex: 100,
+        autoClear: true
       }),
       new DateTimeQuestion({
         key: 'startDate',

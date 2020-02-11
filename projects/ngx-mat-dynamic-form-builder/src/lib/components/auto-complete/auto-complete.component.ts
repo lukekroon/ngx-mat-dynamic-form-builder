@@ -21,9 +21,10 @@ export class AutoCompleteComponent implements OnChanges {
   @Input() displayKey: string;
   // If filterKey not specified defaults to displayKey value
   @Input() filterKey: string;
-  @Input() hint: string = "";
+  @Input() hint: string = '';
   @Input() appearance: string = 'standard';
   @Input() disabled: boolean = false;
+  @Input() autoClear: boolean = false;
 
   @Input() validators: any;
 
@@ -53,6 +54,9 @@ export class AutoCompleteComponent implements OnChanges {
 
   setValue(event: MatAutocompleteSelectedEvent): void {
     this.output.emit(event.option.value);
+    if (this.autoClear) {
+      this.stateCtrl.reset();
+    }
   }
 
   private _filterOptions(value: string): any[] {
