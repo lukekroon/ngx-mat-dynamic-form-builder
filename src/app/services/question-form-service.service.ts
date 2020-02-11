@@ -147,6 +147,23 @@ export class QuestionFormServiceService {
         disabled: false,
         flex: 100,
       }),
+      new ChipSelectorQuestion<number>({
+        key: 'customChips',
+        label: 'Custom Categories',
+        placeholder: 'One or Multiple',
+        value: object ? object.categoryId : undefined,
+        options$: this.dataService.getCategories(),
+        selection: {
+          key: 'id',
+          value: 'name'
+        },
+        validators: [...FormValidators.get('required')],
+        hint: 'Required',
+        appearance: 'standard',
+        disabled: false,
+        flex: 100,
+        customChip: true
+      }),
     ];
     return questions;
   }

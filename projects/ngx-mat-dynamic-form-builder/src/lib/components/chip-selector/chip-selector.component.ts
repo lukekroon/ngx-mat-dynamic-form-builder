@@ -26,6 +26,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   @Input() hint: string = "";
   @Input() appearance: string = 'standard';
   @Input() disabled: boolean = false;
+  @Input() customChip: boolean = false;
 
   @Input() validators: any;
 
@@ -66,11 +67,18 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
     // Add fruit only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
-      // Reset the input value
-      if (event.input) {
-        event.input.value = '';
+      const input = event.input;
+      const value = event.value;
+
+      if (this.customChip && (value || '').trim()) {
+        this.selectedObjects.push({ [this.displayKey]: value.trim() });
+        this.output.emit(this.selectedObjects);
       }
 
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
     }
     this.formControl.setValue(this.selectedObjects);
     this.formControl.updateValueAndValidity();
@@ -98,7 +106,6 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-
     this.selectedObjects.push(event.option.value);
     this.output.emit(this.selectedObjects);
 
@@ -109,7 +116,7 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   }
 
   addDefaultSelected(values: any[]): void {
-    if(!Array.isArray(values)){
+    if (!Array.isArray(values)) {
       console.error('Default values not an array');
       return;
     }
