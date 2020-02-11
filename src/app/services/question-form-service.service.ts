@@ -7,12 +7,12 @@ import {
   ChipSelectorQuestion,
   AutoCompleteQuestion,
   DateTimeQuestion,
+  TextAreaQuestion,
   Spacer,
   DateQuestion
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 import { BehaviorSubject } from 'rxjs';
-import { TextAreaQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-text-area';
 
 @Injectable({
   providedIn: 'root'
