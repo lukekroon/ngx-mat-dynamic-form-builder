@@ -34,8 +34,8 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
 
   formControl = new FormControl();
 
-  @ViewChild('formInput', { static: false }) formInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('formInput') formInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   visible = true;
   selectable = true;
