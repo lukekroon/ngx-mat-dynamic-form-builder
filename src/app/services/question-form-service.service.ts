@@ -141,7 +141,7 @@ export class QuestionFormServiceService {
         appearance: 'outline',
         disabled: false,
         flex: 100,
-        autoClear: true
+        autoClear: false // When selected the form fiels will clear
       }),
       new DateTimeQuestion({
         key: 'startDate',

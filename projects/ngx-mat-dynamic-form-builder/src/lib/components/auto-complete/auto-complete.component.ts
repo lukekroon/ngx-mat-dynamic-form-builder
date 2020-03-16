@@ -59,6 +59,11 @@ export class AutoCompleteComponent implements OnChanges {
     }
   }
 
+  clearValue(): void {
+    this.output.emit(undefined);
+    this.stateCtrl.reset();
+  }
+
   private _filterOptions(value: string): any[] {
     if (isString(value) && value.length >= 1) {
       const filterValue = value.toLowerCase();

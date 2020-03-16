@@ -8,5 +8,8 @@
             <span>{{option[displayKey]}}</span>
         </mat-option>
     </mat-autocomplete>
+    <button mat-button *ngIf="stateCtrl.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearValue()">
+        <mat-icon>close</mat-icon>
+    </button>
     <mat-hint>{{hint}}</mat-hint>
 </mat-form-field>

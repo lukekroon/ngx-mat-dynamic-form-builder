@@ -40,7 +40,11 @@ export class DynamicFormQuestionComponent implements OnInit {
   }
 
   setSingleValue(event: any): void {
-    this.form.controls[this.question.key].setValue(event[this.question.selection.key]);
+    // Clear input of auto complete
+    if (!event)
+      this.form.controls[this.question.key].setValue(undefined);
+    else
+      this.form.controls[this.question.key].setValue(event[this.question.selection.key]);
   }
 
   dateTimeChange(event: MatDatepickerInputEvent<Date>): void {
