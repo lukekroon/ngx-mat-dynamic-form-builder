@@ -1,6 +1,6 @@
 {
   "name": "ngx-mat-dynamic-form-builder",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Build dynamic forms in Angular Material using Reactive forms.",
   "author": "Luke Kroon",
   "repository": {

@@ -6,7 +6,7 @@
       {{obj[displayKey]}}
       <mat-icon matChipRemove *ngIf="!disabled">cancel</mat-icon>
     </mat-chip>
-    <input [placeholder]="placeholder" [disabled]="disabled" #formInput [matAutocomplete]="auto"
+    <input [placeholder]="placeholder" [readonly]="disabled" #formInput [matAutocomplete]="auto"
       [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [formControl]="formControl">
   </mat-chip-list>

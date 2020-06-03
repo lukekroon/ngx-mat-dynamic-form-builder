@@ -5,11 +5,17 @@ import { ChipSelectorComponent } from './components/chip-selector/chip-selector.
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
 import { PrintInputErrorComponent } from './components/print-input-error/print-input-error.component';
-import { DemoMaterialModule } from './shared/demo-material-module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -22,10 +28,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     CommonModule,
-    DemoMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatInputModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatSelectModule 
   ],
   exports: [
     AutoCompleteComponent,
