@@ -113,6 +113,7 @@ export class QuestionFormServiceService {
           filterKey: 'regionId',
           options$: (regionId: number) => this.dataService.getCitiesByRegion(regionId),
         },
+        emitObject: true,
         defaultValue: true,
         validators: [...FormValidators.get('required')],
         hint: 'Home City',
@@ -149,6 +150,7 @@ export class QuestionFormServiceService {
           controlKey: 'categoryId',
           value: 2
         },
+        emitObject: true,
         hint: 'Required',
         appearance: 'outline',
         disabled: false,

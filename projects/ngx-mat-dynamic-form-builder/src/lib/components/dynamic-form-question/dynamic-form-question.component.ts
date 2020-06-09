@@ -26,7 +26,9 @@ export class DynamicFormQuestionComponent implements OnInit {
     } else if (this.question.options$) {
       this.loading = true;
       this.question.options$ = this.question.options$.pipe(
-        tap(_ => this.loading = false)
+        tap(_ => setTimeout(() => {
+          this.loading = false;
+        }))
       );
     }
   }
@@ -35,16 +37,17 @@ export class DynamicFormQuestionComponent implements OnInit {
     if (this.question.customChip) {
       this.form.controls[this.question.key].setValue(event);
     } else {
-      this.form.controls[this.question.key].setValue(event.map(val => val[this.question.selection.key]));
+      this.form.controls[this.question.key].setValue(this.question.emitObject ? event : event.map(val => val[this.question.selection.key]));
     }
   }
 
   setSingleValue(event: any): void {
     // Clear input of auto complete
-    if (!event)
+    if (!event) {
       this.form.controls[this.question.key].setValue(undefined);
-    else
-      this.form.controls[this.question.key].setValue(event[this.question.selection.key]);
+    } else {
+      this.form.controls[this.question.key].setValue(this.question.emitObject ? event : event[this.question.selection.key]);
+    }
   }
 
   dateTimeChange(event: MatDatepickerInputEvent<Date>): void {
