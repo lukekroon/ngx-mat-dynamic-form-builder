@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
     this.questions = this.qfs.questions();
     this.datePicker = this.qfs.datePicker();
     this.questionsEdit = this.qfs.questions({
+      ready: true,
       qty: 5,
       price: 2256,
       regionId: 1,

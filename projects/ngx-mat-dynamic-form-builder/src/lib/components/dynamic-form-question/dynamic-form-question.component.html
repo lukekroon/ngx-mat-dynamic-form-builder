@@ -108,6 +108,14 @@
       </mat-form-field>
     </div>
 
+    <div *ngSwitchCase="'checkbox'" fxFlex>
+      <mat-checkbox [disabled]="question.disabled" [labelPosition]="question.labelPosition" [checked]="question.checked"
+        [color]="question.color" [formControlName]="question.key" [id]="question.key">{{question.label}}</mat-checkbox>
+      <mat-error>
+        <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
+      </mat-error>
+    </div>
+
   </ng-container>
   <div *ngIf="loading" style="margin-left: 5px;">
     <mat-spinner style="zoom:0.24"></mat-spinner>

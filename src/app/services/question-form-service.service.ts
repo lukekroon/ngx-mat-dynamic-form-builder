@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   QuestionBase,
+  Question,
   DropdownQuestion,
   TextboxQuestion,
   FormValidators,
@@ -13,6 +14,7 @@ import {
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 import { BehaviorSubject } from 'rxjs';
+import { CheckboxQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-checkbox';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,18 @@ export class QuestionFormServiceService {
   constructor(private dataService: DataService) {
   }
 
-  questions(object?: any): QuestionBase<any>[] {
-    let questions: QuestionBase<any>[] = [
+  questions(object?: any): Question<any>[] {
+    let questions: Question<any>[] = [
+      new CheckboxQuestion({
+        key: 'ready',
+        label: 'Are you ready ?',
+        value: object ? object.ready : undefined,
+        validators: [...FormValidators.get('required')],
+        disabled: false,
+        color: 'accent',
+        labelPosition: 'before',
+        flex: 100,
+      }),
       new TextAreaQuestion<string>({
         key: 'about',
         label: 'About Yourself',

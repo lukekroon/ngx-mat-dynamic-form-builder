@@ -5,11 +5,12 @@
 export * from './lib/ngx-mat-dynamic-form-builder.service';
 export * from './lib/ngx-mat-dynamic-form-builder.component';
 export * from './lib/ngx-mat-dynamic-form-builder.module';
-export { QuestionBase } from './lib/components/helper-classes/question-base';
+export { QuestionBase, Question } from './lib/components/helper-classes/question-base';
 export { AutoCompleteQuestion } from './lib/components/helper-classes/question-auto-complete';
 export { DropdownQuestion } from './lib/components/helper-classes/question-dropdown';
 export { ChipSelectorQuestion } from './lib/components/helper-classes/question-chip-selector';
 export { TextboxQuestion } from './lib/components/helper-classes/question-textbox';
+export { CheckboxQuestion } from './lib/components/helper-classes/question-checkbox';
 export { TextAreaQuestion } from './lib/components/helper-classes/question-text-area';
 export { DateTimeQuestion } from './lib/components/helper-classes/question-date-time';
 export { DateQuestion } from './lib/components/helper-classes/question-date';
