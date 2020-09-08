@@ -1,6 +1,6 @@
 <mat-form-field [appearance]="appearance" fxFlex>
   <mat-label>{{label}}</mat-label>
-  <mat-chip-list #chipList [formControl]="formControl">
+  <mat-chip-list #chipList>
     <mat-chip *ngFor="let obj of selectedObjects" [selectable]="selectable" [removable]="!disabled"
       (removed)="remove(obj)">
       {{obj[displayKey]}}
@@ -8,12 +8,12 @@
     </mat-chip>
     <input [placeholder]="placeholder" [readonly]="disabled" #formInput [matAutocomplete]="auto"
       [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [formControl]="formControl">
+      (matChipInputTokenEnd)="add($event)" [formControl]="formControl">
   </mat-chip-list>
   <mat-error>
     <ngx-mat-print-input-error [control]="formControl"> </ngx-mat-print-input-error>
   </mat-error>
-  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="selected($event)">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let obj of filteredObjects | async" [value]="obj">
       {{obj[displayKey]}}
     </mat-option>

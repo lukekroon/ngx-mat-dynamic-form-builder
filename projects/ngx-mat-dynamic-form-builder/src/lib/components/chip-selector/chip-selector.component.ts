@@ -39,7 +39,6 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
 
   visible = true;
   selectable = true;
-  addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   filteredObjects: Observable<any[]>;
