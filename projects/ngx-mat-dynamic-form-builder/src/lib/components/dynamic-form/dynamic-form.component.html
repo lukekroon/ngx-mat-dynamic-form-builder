@@ -1,5 +1,5 @@
 <form [formGroup]="form" fxLayout="column">
-    <div fxLayout="row wrap">
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
         <div *ngFor="let question of questions" fxFlex="100" [fxFlex.gt-xs]="question.flex">
             <ngx-mat-dynamic-form-question *ngIf="question.show" [question]="question" [form]="form">
             </ngx-mat-dynamic-form-question>

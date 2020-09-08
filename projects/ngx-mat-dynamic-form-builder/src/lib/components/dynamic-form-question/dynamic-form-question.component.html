@@ -8,8 +8,7 @@
       <mat-label>{{question.label}}</mat-label>
       <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
       <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
-      <input matInput [placeholder]="question.placeholder" [formControlName]="question.key" [id]="question.key"
-        [type]="question.type">
+      <input matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type">
       <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
       <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
       <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
@@ -22,8 +21,8 @@
       <mat-label>{{question.label}}</mat-label>
       <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
       <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
-      <textarea matInput [placeholder]="question.placeholder" [formControlName]="question.key" [id]="question.key"
-        [type]="question.type" [cdkAutosizeMinRows]="question.minRows" [cdkAutosizeMaxRows]="question.maxRows"
+      <textarea matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type"
+        [cdkAutosizeMinRows]="question.minRows" [cdkAutosizeMaxRows]="question.maxRows"
         [cdkTextareaAutosize]="question.autoSize"></textarea>
       <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
       <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
@@ -109,8 +108,8 @@
     </div>
 
     <div *ngSwitchCase="'checkbox'" fxFlex>
-      <mat-checkbox [disabled]="question.disabled" [labelPosition]="question.labelPosition" [checked]="question.checked"
-        [color]="question.color" [formControlName]="question.key" [id]="question.key">{{question.label}}</mat-checkbox>
+      <mat-checkbox [labelPosition]="question.labelPosition" [checked]="question.checked" [color]="question.color"
+        [formControlName]="question.key">{{question.label}}</mat-checkbox>
       <mat-error>
         <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
       </mat-error>

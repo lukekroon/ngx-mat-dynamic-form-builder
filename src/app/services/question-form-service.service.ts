@@ -34,7 +34,7 @@ export class QuestionFormServiceService {
         disabled: false,
         color: 'accent',
         labelPosition: 'before',
-        flex: 100,
+        flex: 50,
       }),
       new TextAreaQuestion<string>({
         key: 'about',
@@ -46,7 +46,7 @@ export class QuestionFormServiceService {
         hint: 'Long Text',
         appearance: 'outline',
         disabled: false,
-        flex: 100,
+        flex: 50,
         minRows: 4,
         maxRows: 8,
         autoSize: true

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { tap } from 'rxjs/operators';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'ngx-mat-dynamic-form-question',
@@ -17,7 +18,8 @@ export class DynamicFormQuestionComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor() {
+  constructor(private adapter: DateAdapter<Date>) {
+    this.adapter.setLocale('en-GB');
   }
 
   ngOnInit() {
