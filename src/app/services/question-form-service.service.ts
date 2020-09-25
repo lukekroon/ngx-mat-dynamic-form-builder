@@ -150,6 +150,7 @@ export class QuestionFormServiceService {
           controlKey: 'categoryId',
           value: 2
         },
+        validators: [...FormValidators.get('required')],
         emitObject: true,
         hint: 'Required',
         appearance: 'outline',

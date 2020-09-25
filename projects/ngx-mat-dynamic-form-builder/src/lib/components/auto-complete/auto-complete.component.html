@@ -13,4 +13,5 @@
         <mat-icon>close</mat-icon>
     </button>
     <mat-hint>{{hint}}</mat-hint>
+    <mat-error *ngIf="!stateCtrl.valid && stateCtrl.touched">Select valid option</mat-error>
 </mat-form-field>

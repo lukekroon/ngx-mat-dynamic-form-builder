@@ -9,10 +9,8 @@
     <input [placeholder]="placeholder" [readonly]="disabled" #formInput [matAutocomplete]="auto"
       [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)" [formControl]="formControl">
+    <mat-error *ngIf="!formControl.valid && formControl.touched">Select valid option</mat-error>
   </mat-chip-list>
-  <mat-error>
-    <ngx-mat-print-input-error [control]="formControl"> </ngx-mat-print-input-error>
-  </mat-error>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let obj of filteredObjects | async" [value]="obj">
       {{obj[displayKey]}}

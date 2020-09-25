@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { isString } from 'lodash';
@@ -10,7 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.css']
 })
-export class AutoCompleteComponent implements OnChanges {
+export class AutoCompleteComponent implements OnInit, OnChanges {
 
   @Input() options: any[] = [];
   // Default selected options (array of selection keys)
@@ -26,14 +26,31 @@ export class AutoCompleteComponent implements OnChanges {
   @Input() disabled: boolean = false;
   @Input() autoClear: boolean = false;
 
-  @Input() validators: any;
+  @Input() validators: ValidatorFn[];
 
   @Output() output = new EventEmitter<any>();
 
-  stateCtrl = new FormControl();
+  stateCtrl: FormControl;
   filteredOptions: Observable<any[]>;
 
   constructor() { }
+
+  ngOnInit(): void {
+    if (this.validators) {
+      let isRequired = false;
+      this.validators.forEach(vd => {
+        if (vd.name === 'required')
+          isRequired = true;
+      });
+      if (isRequired) {
+        this.stateCtrl = new FormControl(null, [Validators.required, this.valueSelected()]);
+      } else {
+        this.stateCtrl = new FormControl(null, [this.valueSelected()]);
+      }
+    } else {
+      this.stateCtrl = new FormControl(null, [this.valueSelected()]);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.options && this.options) {
@@ -70,6 +87,17 @@ export class AutoCompleteComponent implements OnChanges {
       return this.options.filter(state => state[this.filterKey ? this.filterKey : this.displayKey].toLowerCase().includes(filterValue));
     }
     return this.options;
+  }
+
+  private valueSelected(): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      // if value is set and it is not an object, valid option not selected
+      if (c.value && typeof c.value !== 'object') {
+        return { match: true };
+      } else {
+        return null;
+      }
+    };
   }
 
 }

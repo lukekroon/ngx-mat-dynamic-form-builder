@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, ViewChild, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn, Validators, AbstractControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
@@ -28,11 +28,11 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
   @Input() customChip: boolean = false;
 
-  @Input() validators: any;
+  @Input() validators: ValidatorFn[];
 
   @Output() output = new EventEmitter<any[]>();
 
-  formControl = new FormControl();
+  formControl: FormControl;
 
   @ViewChild('formInput') formInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -45,7 +45,22 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   selectedObjects: any[] = [];
 
   ngOnInit() {
-    this.formControl.setValue(this.selectedObjects);
+    if (this.validators) {
+      let isRequired = false;
+      this.validators.forEach(vd => {
+        if (vd.name === 'required')
+          isRequired = true;
+      });
+      if (isRequired) {
+        this.formControl = new FormControl(this.selectedObjects, [Validators.required, this.valueSelected()]);
+      } else {
+        this.formControl = new FormControl(this.selectedObjects, [this.valueSelected()]);
+      }
+    } else if (!this.customChip) {
+      this.formControl = new FormControl(this.selectedObjects, [this.valueSelected()]);
+    } else {
+      this.formControl = new FormControl();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -135,13 +150,14 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
     return this.options;
   }
 
-  // Need to implement custom validator, 
-  // angular can't determine required based on array of values
-  validateRequired(c: FormControl) {
-    if (c.value.length === 0) {
-      return { required: true };
-    } else {
-      return null;
-    }
+  private valueSelected(): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      // if value is set and it is not an object, valid option not selected
+      if (c.value && typeof c.value !== 'object') {
+        return { match: true };
+      } else {
+        return null;
+      }
+    };
   }
 }
