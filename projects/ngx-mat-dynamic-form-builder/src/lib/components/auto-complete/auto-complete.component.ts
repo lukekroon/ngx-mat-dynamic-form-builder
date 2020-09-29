@@ -36,6 +36,30 @@ export class AutoCompleteComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
+    this.setupValidators();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.options && this.options) {
+
+      if (!this.stateCtrl)
+        this.setupValidators();
+
+      this.filteredOptions = this.stateCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(state => state ? this._filterOptions(state) : this.options.slice())
+        );
+      if (this.defaultOption && this.defaultOptionKey) {
+        this.stateCtrl.setValue(this.options.find(o => o[this.defaultOptionKey] === this.defaultOption));
+      }
+    }
+  }
+
+  setupValidators(): void {
+    if (this.stateCtrl)
+      return;
+
     if (this.validators) {
       let isRequired = false;
       this.validators.forEach(vd => {
@@ -49,19 +73,6 @@ export class AutoCompleteComponent implements OnInit, OnChanges {
       }
     } else {
       this.stateCtrl = new FormControl(null, [this.valueSelected()]);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.options && this.options) {
-      this.filteredOptions = this.stateCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(state => state ? this._filterOptions(state) : this.options.slice())
-        );
-      if (this.defaultOption && this.defaultOptionKey) {
-        this.stateCtrl.setValue(this.options.find(o => o[this.defaultOptionKey] === this.defaultOption));
-      }
     }
   }
 

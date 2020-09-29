@@ -13,7 +13,7 @@ import {
   DateQuestion
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { CheckboxQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-checkbox';
 
 @Injectable({
@@ -46,7 +46,7 @@ export class QuestionFormServiceService {
         hint: 'Long Text',
         appearance: 'outline',
         disabled: false,
-        flex: 50,
+        flex: 100,
         minRows: 4,
         maxRows: 8,
         autoSize: true

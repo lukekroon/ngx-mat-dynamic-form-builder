@@ -45,6 +45,29 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
   selectedObjects: any[] = [];
 
   ngOnInit() {
+    this.setupValidators();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.options && this.options) {
+      if (!this.formControl)
+        this.setupValidators();
+
+      this.filteredObjects = this.formControl.valueChanges.pipe(
+        startWith([]),
+        map((obj: string | null) => {
+          return obj ? this._filter(obj) : this.options.slice()
+        })
+      );
+      if (this.defaultOptions && this.defaultOptionsKey) {
+        this.addDefaultSelected(this.defaultOptions);
+      }
+    }
+  }
+
+  setupValidators(): void {
+    if (this.formControl)
+      return;
     if (this.validators) {
       let isRequired = false;
       this.validators.forEach(vd => {
@@ -60,20 +83,6 @@ export class ChipSelectorComponent implements OnInit, OnChanges {
       this.formControl = new FormControl(this.selectedObjects, [this.valueSelected()]);
     } else {
       this.formControl = new FormControl();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.options && this.options) {
-      this.filteredObjects = this.formControl.valueChanges.pipe(
-        startWith(null),
-        map((obj: string | null) => {
-          return obj ? this._filter(obj) : this.options.slice()
-        })
-      );
-      if (this.defaultOptions && this.defaultOptionsKey) {
-        this.addDefaultSelected(this.defaultOptions);
-      }
     }
   }
 
