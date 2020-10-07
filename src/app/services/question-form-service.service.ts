@@ -10,11 +10,12 @@ import {
   DateTimeQuestion,
   TextAreaQuestion,
   Spacer,
+  FileUploadQuestion,
+  CheckboxQuestion,
   DateQuestion
 } from 'ngx-mat-dynamic-form-builder';
 import { DataService } from './data.service';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { CheckboxQuestion } from 'projects/ngx-mat-dynamic-form-builder/src/lib/components/helper-classes/question-checkbox';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,19 @@ export class QuestionFormServiceService {
         disabled: false,
         color: 'accent',
         labelPosition: 'before',
-        flex: 50,
+        flex: 90,
+        xsFlex: 90,
+      }),
+      new FileUploadQuestion({
+        key: 'photoId',
+        label: '',
+        value: undefined,
+        validators: [...FormValidators.get('required')],
+        color: 'accent',
+        prefixIcon: 'camera_alt',
+        buttonType: 'icon',
+        flex: 10,
+        xsFlex: 10,
       }),
       new TextAreaQuestion<string>({
         key: 'about',
@@ -215,7 +228,7 @@ export class QuestionFormServiceService {
         value: new Date(),
         validators: [...FormValidators.get('required')],
         flex: 33,
-      }),
+      })
     ]
   }
 }

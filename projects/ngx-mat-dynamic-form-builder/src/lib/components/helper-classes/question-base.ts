@@ -7,14 +7,15 @@ export class Question<T> {
     key: string; // Identifier for this question and also the key in which the result will be
     label: string; // The label of the form field
     controlType: string; // The type of question, set by extended classes
-    validators: any // Angular validators
-    flex: number; // angular flex layout, all questions are in flexLayout="row wrap" i.e. flex=100 will be 100% width
-    conditional: { // If this question is conditional on the result of another
+    validators?: any // Angular validators
+    flex?: number; // angular flex layout, all questions are in flexLayout="row wrap" i.e. flex=100 will be 100% width
+    xsFlex?: number; // angular flex layout for mobile devices, default to 100
+    conditional?: { // If this question is conditional on the result of another
         controlKey: string; // the identifier of the other question
         value: any // the value the other question must be for this one to appear
     }
-    show: boolean; // hide this question with ngIf
-    disabled: boolean; // show but disable
+    show?: boolean; // hide this question with ngIf
+    disabled?: boolean; // show but disable
 
     constructor(options: {
         value?: T,
@@ -24,6 +25,7 @@ export class Question<T> {
         controlType?: string,
         validators?: any,
         flex?: number,
+        xsFlex?: number,
         disabled?: boolean,
         conditional?: {
             controlKey: string;
@@ -36,6 +38,7 @@ export class Question<T> {
         this.controlType = options.controlType || '';
         this.validators = options.validators || null;
         this.flex = options.flex || 100;
+        this.xsFlex = options.xsFlex || 100;
         this.disabled = options.disabled || false;
         this.conditional = options.conditional;
         this.conditional ? this.show = false : this.show = true;
@@ -56,13 +59,13 @@ export class Question<T> {
 
 export class QuestionBase<T> extends Question<T> {
 
-    hint: string // Hint of the mat form field
-    placeholder: string // Placeholder of input
-    appearance: string; // mat form field appearance
-    prefix: string; // mat form field prefix
-    suffix: string; // mat form field suffix
-    prefixIcon: string; // mat form field icon prefix
-    suffixIcon: string; // mat form field icon suffix
+    hint?: string // Hint of the mat form field
+    placeholder?: string // Placeholder of input
+    appearance?: string; // mat form field appearance
+    prefix?: string; // mat form field prefix
+    suffix?: string; // mat form field suffix
+    prefixIcon?: string; // mat form field icon prefix
+    suffixIcon?: string; // mat form field icon suffix
 
     constructor(options: {
         value?: T,

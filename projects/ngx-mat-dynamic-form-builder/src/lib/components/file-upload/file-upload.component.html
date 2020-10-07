@@ -1,0 +1,15 @@
+<ng-container *ngIf="buttonType === 'icon'; else normalButton;">
+    <button mat-icon-button (click)="fileInput.click()">
+        <mat-icon matBadge="1" [matBadgeHidden]="!fileSelected" matBadgeSize="small" matBadgeColor="accent">
+            {{prefixIcon}}</mat-icon>
+        <input #fileInput type="file" (change)="processFile($event)" style="display:none;" />
+    </button>
+</ng-container>
+<ng-template #normalButton>
+    <button mat-flat-button [color]="color ? color : 'primary'" (click)="fileInput.click()">
+        <mat-icon *ngIf="prefixIcon && !fileSelected" style="margin-left: -8px;">{{prefixIcon}}</mat-icon>
+        <mat-icon *ngIf="fileSelected">check</mat-icon>
+        <span>{{label}}</span>
+        <input #fileInput type="file" (change)="processFile($event)" style="display:none;" />
+    </button>
+</ng-template>

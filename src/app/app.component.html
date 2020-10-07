@@ -7,9 +7,6 @@
     <h4>New Form</h4>
     <mat-card-content style="padding: 15px;">
       <ngx-mat-dynamic-form [questions]="questions" (formResult)="saveFormNew($event)">
-        <div *ngxMatFormContent fxFlex="50">TEST</div>
-        <div *ngxMatFormContent #test2>TEST2</div>
-        <div *ngxMatFormContent #test4>TEST3</div>
       </ngx-mat-dynamic-form>
       <button mat-flat-button (click)="submitNew()" color="accent" style="margin-top: 15px;">Save</button>
     </mat-card-content>

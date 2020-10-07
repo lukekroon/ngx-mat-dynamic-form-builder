@@ -115,6 +115,12 @@
       </mat-error>
     </div>
 
+    <div *ngSwitchCase="'file-upload'" fxFlex>
+      <ngx-mat-file-upload [prefixIcon]="question.prefixIcon" [label]="question.label" [color]="question.color"
+        [buttonType]="question.buttonType" (file)="setFile($event)">
+      </ngx-mat-file-upload>
+    </div>
+
   </ng-container>
   <div *ngIf="loading" style="margin-left: 5px;">
     <mat-spinner style="zoom:0.24"></mat-spinner>

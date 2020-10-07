@@ -14,6 +14,7 @@ export { CheckboxQuestion } from './lib/components/helper-classes/question-check
 export { TextAreaQuestion } from './lib/components/helper-classes/question-text-area';
 export { DateTimeQuestion } from './lib/components/helper-classes/question-date-time';
 export { DateQuestion } from './lib/components/helper-classes/question-date';
+export { FileUploadQuestion } from './lib/components/helper-classes/question-file-upload';
 export { Spacer } from './lib/components/helper-classes/spacer';
 export { FormValidators } from './lib/components/helper-classes/validators';
 export { AutoCompleteComponent } from './lib/components/auto-complete/auto-complete.component'
@@ -21,4 +22,3 @@ export { ChipSelectorComponent } from './lib/components/chip-selector/chip-selec
 export { DynamicFormComponent } from './lib/components/dynamic-form/dynamic-form.component'
 export { DynamicFormQuestionComponent } from './lib/components/dynamic-form-question/dynamic-form-question.component'
 export { PrintInputErrorComponent } from './lib/components/print-input-error/print-input-error.component'
-export { NgxMatFormContentDirective } from './lib/shared/ngx-mat-form-content.directive'

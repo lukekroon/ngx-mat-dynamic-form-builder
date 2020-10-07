@@ -17,7 +17,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { NgxMatFormContentDirective } from './shared/ngx-mat-form-content.directive';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { NgxMatFormContentDirective } from './shared/ngx-mat-form-content.direct
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     PrintInputErrorComponent,
-    NgxMatFormContentDirective
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
@@ -42,15 +44,16 @@ import { NgxMatFormContentDirective } from './shared/ngx-mat-form-content.direct
     MatDatepickerModule,
     MatIconModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatBadgeModule
   ],
   exports: [
     AutoCompleteComponent,
     ChipSelectorComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    PrintInputErrorComponent,
-    NgxMatFormContentDirective
+    PrintInputErrorComponent
   ]
 })
 export class NgxMatDynamicFormBuilderModule { }
