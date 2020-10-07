@@ -21,3 +21,4 @@ export { ChipSelectorComponent } from './lib/components/chip-selector/chip-selec
 export { DynamicFormComponent } from './lib/components/dynamic-form/dynamic-form.component'
 export { DynamicFormQuestionComponent } from './lib/components/dynamic-form-question/dynamic-form-question.component'
 export { PrintInputErrorComponent } from './lib/components/print-input-error/print-input-error.component'
+export { NgxMatFormContentDirective } from './lib/shared/ngx-mat-form-content.directive'

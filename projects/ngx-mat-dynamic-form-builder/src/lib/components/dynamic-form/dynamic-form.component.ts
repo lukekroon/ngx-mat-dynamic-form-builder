@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ContentChildren, TemplateRef, QueryList } from '@angular/core';
 import { QuestionBase } from '../helper-classes/question-base';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 import { Subscription } from 'rxjs';
 import { SelectQuestion } from '../helper-classes/question-select';
 import { TextboxQuestion } from '../helper-classes/question-textbox';
+import { NgxMatFormContentDirective } from '../../shared/ngx-mat-form-content.directive';
 
 @Component({
   selector: 'ngx-mat-dynamic-form',
@@ -17,6 +18,8 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   @Input() questions: QuestionBase<any>[] = [];
   @Input() buttonText: string;
   @Output() formResult: EventEmitter<any> = new EventEmitter<any>();
+
+  @ContentChildren(NgxMatFormContentDirective, { read: TemplateRef }) templates: QueryList<TemplateRef<any>>;
 
   form: FormGroup;
 
