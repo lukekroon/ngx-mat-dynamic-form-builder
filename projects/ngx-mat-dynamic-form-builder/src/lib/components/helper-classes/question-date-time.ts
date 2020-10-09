@@ -17,12 +17,12 @@ export class DateTimeQuestion extends DateQuestion {
             this.minuteControl.setValue(this.dateControl.value.getMinutes());
         }
         this.hourControl.valueChanges.subscribe(hour => {
-            if (hour && this.dateControl.value) {
+            if (hour !== undefined || hour !== null && this.dateControl.value) {
                 this.dateControl.value.setHours(hour);
             }
         })
         this.minuteControl.valueChanges.subscribe(min => {
-            if (min && this.dateControl.value) {
+            if (min !== undefined || min !== null && this.dateControl.value) {
                 this.dateControl.value.setMinutes(min);
             }
         })
