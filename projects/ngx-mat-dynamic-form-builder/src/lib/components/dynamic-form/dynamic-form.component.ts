@@ -16,6 +16,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
 
   @Input() questions: QuestionBase<any>[] = [];
   @Input() buttonText: string;
+  @Input() emitOnlyOnChange: boolean = false;
   @Output() formResult: EventEmitter<any> = new EventEmitter<any>();
 
   form: FormGroup;
@@ -28,9 +29,13 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   constructor(private qcs: QuestionControlService) { }
 
   ngOnInit() {
+    if (!this.questions || this.questions.length === 0) {
+      console.error('Questions are null or empty.')
+      return;
+    }
     this.form = this.qcs.toFormGroup(this.questions);
-    // TODO: Sometimes if the form is valid from the beginning it does not emit in subscribe.
-    if (this.form.valid) {
+    // Emit if the form is valid from begining but not if on change flag is set.
+    if (!this.emitOnlyOnChange && this.form.valid) {
       this.emitForm();
     }
     this._buttonText = this.buttonText || 'Save';
