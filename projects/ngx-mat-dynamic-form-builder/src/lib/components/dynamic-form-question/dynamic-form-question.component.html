@@ -87,7 +87,8 @@
         <mat-label>Hour</mat-label>
         <input type="number" matInput [formControl]="question.hourControl" placeholder="Hour">
       </mat-form-field>
-      <mat-form-field fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance" style="margin-left: 5px;">
+      <mat-form-field *ngIf="!question.disableMinutes" fxFlex.gt-xs="20" fxFlex [appearance]="question.appearance"
+        style="margin-left: 5px;">
         <mat-label>Minute</mat-label>
         <input type="number" matInput [formControl]="question.minuteControl" placeholder="Minute">
       </mat-form-field>

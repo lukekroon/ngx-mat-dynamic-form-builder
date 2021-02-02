@@ -179,6 +179,7 @@ export class QuestionFormServiceService {
         appearance: 'outline',
         maxDate: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
         disabled: false,
+        disableMinutes: true,
         flex: 100,
       }),
       new DateQuestion({
