@@ -34,9 +34,9 @@
 
     <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'dropdown'" fxFlex>
       <mat-label>{{question.label}}</mat-label>
-      <mat-select [formControlName]="question.key">
+      <mat-select [formControlName]="question.key" [multiple]="question.multiple">
         <ng-container *ngIf="question.options$">
-          <mat-option *ngIf="question.defaultValue">None</mat-option>
+          <mat-option *ngIf="question.defaultValue && !question.multiple">None</mat-option>
           <mat-option *ngFor="let opt of question.options$ | async" [value]="opt[question.selection.key]">
             {{opt[question.selection.value]}}
           </mat-option>

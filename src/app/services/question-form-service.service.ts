@@ -128,6 +128,7 @@ export class QuestionFormServiceService {
         },
         emitObject: true,
         defaultValue: true,
+        multiple: true,
         validators: [...FormValidators.get('required')],
         hint: 'Home City',
         appearance: 'outline',
