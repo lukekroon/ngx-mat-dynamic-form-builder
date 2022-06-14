@@ -22,6 +22,7 @@ export class Question<T> {
         value?: T,
         key?: string,
         label?: string,
+        textDescription?: string,
         required?: boolean,
         controlType?: string,
         validators?: any,
@@ -36,10 +37,7 @@ export class Question<T> {
         this.value = options.value;
         this.key = options.key || '';
         this.label = options.label || '';
-        if (options.label?.length > 50) {
-            this.textDescription = options.label;
-            this.label = 'Input';
-        }
+        this.textDescription = options.textDescription || '';
         this.controlType = options.controlType || '';
         this.validators = options.validators || null;
         this.flex = options.flex || 100;

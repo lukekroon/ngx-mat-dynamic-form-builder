@@ -1,6 +1,6 @@
 {
   "name": "ngx-mat-dynamic-form-builder",
-  "version": "11.0.0-beta.2",
+  "version": "11.0.0-beta.4",
   "description": "Build dynamic forms in Angular Material using Reactive forms.",
   "author": "Luke Kroon",
   "repository": {
@@ -24,7 +24,6 @@
     "@angular/cdk": ">=9.0.0",
     "@angular/forms": ">=9.0.0",
     "@angular/material": ">=9.0.0",
-    "@angular/flex-layout": ">=9.0.0",
     "hammerjs": ">=2.0.0",
     "rxjs": ">=6.4.0"
   }
