@@ -6,6 +6,7 @@ export class Question<T> {
     value: T; // The value of the form
     key: string; // Identifier for this question and also the key in which the result will be
     label: string; // The label of the form field
+    textDescription: string; // The label of the form field
     controlType: string; // The type of question, set by extended classes
     validators?: any // Angular validators
     flex?: number; // angular flex layout, all questions are in flexLayout="row wrap" i.e. flex=100 will be 100% width
@@ -35,6 +36,10 @@ export class Question<T> {
         this.value = options.value;
         this.key = options.key || '';
         this.label = options.label || '';
+        if (options.label?.length > 50) {
+            this.textDescription = options.label;
+            this.label = 'Input';
+        }
         this.controlType = options.controlType || '';
         this.validators = options.validators || null;
         this.flex = options.flex || 100;

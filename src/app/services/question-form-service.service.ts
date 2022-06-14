@@ -99,7 +99,7 @@ export class QuestionFormServiceService {
       }),
       new DropdownQuestion<number>({
         key: 'regionId',
-        label: 'Region',
+        label: 'Region, this text will be unnecessarily long to indicate what will happen with the text wrapping. Labels longer than 50 characters will be added as a paragraph above the input.',
         value: object ? object.regionId : undefined,
         options$: this.dataService.getRegions(),
         selection: {

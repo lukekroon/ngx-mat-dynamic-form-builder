@@ -4,54 +4,63 @@
 
     <span *ngSwitchCase="'spacer'" fxFlex></span>
 
-    <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'textbox'" fxFlex>
-      <mat-label>{{question.label}}</mat-label>
-      <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
-      <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
-      <input matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type">
-      <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
-      <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
-      <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
-      <mat-error>
-        <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
-      </mat-error>
-    </mat-form-field>
+    <div *ngSwitchCase="'textbox'" fxLayout="column" fxFlex>
+      <span class="mat-caption" *ngIf="question.textDescription">{{question.textDescription}}</span>
+      <mat-form-field [appearance]="question.appearance" fxFlex>
+        <mat-label>{{question.label}}</mat-label>
+        <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
+        <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
+        <input matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type">
+        <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
+        <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
+        <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
+        <mat-error>
+          <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'textarea'" fxFlex>
-      <mat-label>{{question.label}}</mat-label>
-      <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
-      <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
-      <textarea matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type"
-        [cdkAutosizeMinRows]="question.minRows" [cdkAutosizeMaxRows]="question.maxRows"
-        [cdkTextareaAutosize]="question.autoSize"></textarea>
-      <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
-      <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
-      <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
-      <mat-error>
-        <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
-      </mat-error>
-    </mat-form-field>
+    <div *ngSwitchCase="'textarea'" fxLayout="column" fxFlex>
+      <span class="mat-caption" *ngIf="question.textDescription">{{question.textDescription}}</span>
+      <mat-form-field [appearance]="question.appearance" fxFlex>
+        <mat-label>{{question.label}}</mat-label>
+        <span *ngIf="question.prefix" matPrefix>{{question.prefix}}&nbsp;</span>
+        <mat-icon *ngIf="question.prefixIcon" matPrefix>{{question.prefixIcon}}</mat-icon>
+        <textarea matInput [placeholder]="question.placeholder" [formControlName]="question.key" [type]="question.type"
+          [cdkAutosizeMinRows]="question.minRows" [cdkAutosizeMaxRows]="question.maxRows"
+          [cdkTextareaAutosize]="question.autoSize"></textarea>
+        <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
+        <mat-icon *ngIf="question.suffixIcon" matSuffix>{{question.suffixIcon}}</mat-icon>
+        <span *ngIf="question.suffix" matSuffix>&nbsp;{{question.suffix}}</span>
+        <mat-error>
+          <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field [appearance]="question.appearance" *ngSwitchCase="'dropdown'" fxFlex>
-      <mat-label>{{question.label}}</mat-label>
-      <mat-select [formControlName]="question.key" [multiple]="question.multiple">
-        <ng-container *ngIf="question.options$">
-          <mat-option *ngIf="question.defaultValue && !question.multiple">None</mat-option>
-          <mat-option *ngFor="let opt of question.options$ | async" [value]="opt[question.selection.key]">
-            {{opt[question.selection.value]}}
-          </mat-option>
-        </ng-container>
-        <ng-container *ngIf="question.options">
-          <mat-option *ngFor="let opt of question.options" [value]="opt[question.selection.key]">
-            {{opt[question.selection.value]}}
-          </mat-option>
-        </ng-container>
-      </mat-select>
-      <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
-      <mat-error>
-        <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
-      </mat-error>
-    </mat-form-field>
+    <div *ngSwitchCase="'dropdown'" fxLayout="column" fxFlex>
+      <span class="mat-caption" *ngIf="question.textDescription">{{question.textDescription}}</span>
+      <mat-form-field [appearance]="question.appearance" fxFlex>
+        <mat-label>{{question.label}}</mat-label>
+        <mat-select [formControlName]="question.key" [multiple]="question.multiple">
+          <ng-container *ngIf="question.options$">
+            <mat-option *ngIf="question.defaultValue && !question.multiple">None</mat-option>
+            <mat-option *ngFor="let opt of question.options$ | async" [value]="opt[question.selection.key]">
+              {{opt[question.selection.value]}}
+            </mat-option>
+          </ng-container>
+          <ng-container *ngIf="question.options">
+            <mat-option *ngFor="let opt of question.options" [value]="opt[question.selection.key]">
+              {{opt[question.selection.value]}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-hint *ngIf="question.hint">{{question.hint}}</mat-hint>
+        <mat-error>
+          <ngx-mat-print-input-error [control]="form.controls[question.key]"> </ngx-mat-print-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
     <div *ngSwitchCase="'chipSelector'" fxFlex>
       <ngx-mat-chip-selector [options]="question.options$ | async" [defaultOptions]="question.value"
